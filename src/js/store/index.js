@@ -3,6 +3,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducers";
 import { forbiddenWordsMiddleware } from "../middlewares";
+import thunk from "redux-thunk";
 
 // const initialState = {}; could be useful for server side rendering if we wanted.
 
@@ -12,7 +13,7 @@ const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // createStore takes a reducer as the first argument and in our case we passed in rootReducer.
 const store = createStore(
   rootReducer, // the STATE in REDUX COMES FROM REDUCERS. Let’s make it clear: reducers produce the state of your application.
-  storeEnhancers(applyMiddleware(forbiddenWordsMiddleware))
+  storeEnhancers(applyMiddleware(forbiddenWordsMiddleware, thunk))
   // initialState
 );
 

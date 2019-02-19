@@ -207,3 +207,37 @@ you should always return next(action) in your middlewares. If you forget to retu
 Now, time to wire up forbiddenWordsMiddleware to the Redux store.
 
 For that we need to import our middleware, another utility from Redux (applyMiddleware) and then cook everything together.
+
+## Asynchronous actions in Redux
+
+So far we were dealing with synchronous data. That is, the act of dispatching an action is synchronous. No AJAX, no promises. We return a plain object from our action creators. And when the action reaches the reducer we return the next state.
+
+Now, suppose we want to fetch data from an API. In React you would put a call in componentDidMount and call it a day. But how about Redux? What’s a good place for calling asynchronous functions? Let’s think a moment about it.
+
+Reducers? No no. Reducers should stay lean and clean. A reducer is not a good place for asynchronous logic.
+
+Actions? How I am supposed to do that? Actions in Redux are plain objects. And what about action creators? An action creator is a function, and it looks like a nice spot for calling an API, doesn’t it? Let’s give it a shot.
+
+We’ll create a new action named getData. This action calls an API with fetch and returns a Redux action.
+
+Now let’s wire up a React component so it dispatches getData from componentDidMount.
+
+We’ll use mapDispatchToProps (this time with the object shorthand form) for mapping Redux action creators to our component’s props.
+
+we cannot call fetch from within an action creator in Redux. 
+
+For making things work we need a custom middleware. Luckily there’s something ready for us: redux-thunk.
+
+## Asynchronous actions in Redux with Redux Thunk
+
+We just learned that calling fetch from an action creator does not work. That’s because Redux is expecting objects as actions but we’re trying to return a Promise. With redux-thunk we can overcome the problem and return functions from action creators. Inside that function we can call APIs, delay the dispatch of an action, and so on.
+
+A few things worth noting in the new version of getData: the fetch call gets returned from an outer function and the outer function has dispatch as a parameter. If you want to access the state inside the action creator you can add getState in the parameter’s list.
+
+Also, notice the use of dispatch inside then. We need to explicitly call dispatch inside the async function for dispatching the action.
+
+With that in place we’re ready to update our reducer with the new action type.
+
+With redux-thunk you can return functions from action creators, not only objects. You can do asynchronous work inside your actions and dispatch other actions in response to AJAX calls.
+
+When to use redux-thunk? redux-thunk is a nice middleware that works very well for simpler use cases. But if your asynchronous logic involves more complex scenarios then redux saga might be a better fit.

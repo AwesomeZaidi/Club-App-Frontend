@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 import { connect } from "react-redux";
-import uuidv1 from "uuid";
 import { loginUser } from "../js/actions/index";
+
+const mapStateToProps = state => {
+    return { user: state.user };
+};
 
 function mapDispatchToProps(dispatch) {
     return {
         loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
     };
 };
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -45,6 +48,8 @@ class Login extends Component {
         // if (this.state.user !== '') {
         //     return <Redirect to='/dashboard' />
         // };
+        // console.log("USER HERE:", this.store.user);
+        
         return (
             <div>
                 <form className='login-form' onSubmit={this.handleSubmit}>
@@ -58,7 +63,7 @@ class Login extends Component {
         );
     };
 };
-const LoginUser = connect(null, mapDispatchToProps)(Login);
+const LoginUser = connect(mapStateToProps, mapDispatchToProps)(Login);
 
 
 export default LoginUser;

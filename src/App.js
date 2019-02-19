@@ -4,10 +4,9 @@ import Home from './Home/Home';
 import Navbar from './Navbar/Navbar';
 import Login from './Login/Login';
 import Dashboard from './Dashboard/Dashboard';
-import List from "./List/List";
-import Form from "./Form/Form";
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-
+// import List from "./List/List";
+// import Form from "./Form/Form";
+import Post from "./Posts/Posts";
 
 class App extends Component {
   render() {
@@ -21,6 +20,8 @@ class App extends Component {
           <List />
           <h2>Add a new article</h2>
           <Form /> */}
+          <h2>API posts</h2>
+          <Post />
         </div>
     );
   }

@@ -16,13 +16,20 @@ import { LOGIN_USER } from "../constants/action-types";
 
 const initialState = {
   articles: [],
-  user: ""
+  user: "initial",
+  remoteArticles: []
 };
 
 function rootReducer(state = initialState, action) {
   if (action.type === ADD_ARTICLE) {
     return Object.assign({}, state, {
       articles: state.articles.concat(action.payload)
+    });
+  }
+
+  if (action.type === "DATA_LOADED") {
+    return Object.assign({}, state, {
+      remoteArticles: state.remoteArticles.concat(action.payload)
     });
   }
 
@@ -33,6 +40,8 @@ function rootReducer(state = initialState, action) {
   }
   return state;
 };
+
+
 export default rootReducer;
 
 // the initial state is left utterly untouched.
