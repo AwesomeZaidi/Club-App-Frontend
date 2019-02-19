@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import { loginUser } from "../js/actions/index";
+import '../Styles/login.scss';
 
 const mapStateToProps = state => {
     return { user: state.user };
@@ -34,13 +35,15 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log("in it");// alert(`A name was submitted: ${this.state.username} ${this.state.password}`);
-        axios.post(`http://5915c677.ngrok.io/login`, this.state).then((user) => {
+        axios.post(`http://64224283.ngrok.io/login`, this.state).then((user) => {
             console.log("user:", user);
             
             this.props.loginUser({ user });
-            if (user.statusText === "OK") { 
-                window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
-            };
+            console.log("this.props.user", this.props.user);
+            
+            // if (user.statusText === "OK") { 
+            //     // window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
+            // };
         }).catch(console.err);
     };
 

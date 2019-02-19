@@ -11,7 +11,7 @@ export function loginUser(payload) {
     return { type: LOGIN_USER, payload }
 }
 
-// our new action creator. Will it work?
+// our new action creator.
 export function getData() {
     return function(dispatch) {
         return fetch("https://jsonplaceholder.typicode.com/posts")
