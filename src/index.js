@@ -4,6 +4,10 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true  // enable axios post cookie, default false
+
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render((
