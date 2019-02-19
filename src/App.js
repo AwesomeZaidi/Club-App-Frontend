@@ -4,6 +4,8 @@ import Home from './Home/Home';
 import Navbar from './Navbar/Navbar';
 import Login from './Login/Login';
 import Dashboard from './Dashboard/Dashboard';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+
 
 class App extends Component {
   render() {
@@ -13,11 +15,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/dashboard' component={Dashboard} />
-
         </div>
-        // <Route exact path='/login' component={Home} />
-        // <Route exact path='/signup' component={Home} />
-
     );
   }
 }
