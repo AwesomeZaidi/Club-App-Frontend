@@ -8,6 +8,8 @@ export function addArticle(payload) {
 };
 
 export function loginUser(payload) {
+    console.log("payload:", payload);
+    
     return { type: LOGIN_USER, payload }
 }
 

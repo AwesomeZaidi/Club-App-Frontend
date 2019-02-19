@@ -6,7 +6,7 @@ import Login from './Login/Login';
 import Dashboard from './Dashboard/Dashboard';
 // import List from "./List/List";
 // import Form from "./Form/Form";
-import Post from "./Posts/Posts";
+// import Post from "./Posts/Posts";
 
 class App extends Component {
   render() {
@@ -19,9 +19,9 @@ class App extends Component {
           {/* <h2>Articles Example</h2>
           <List />
           <h2>Add a new article</h2>
-          <Form /> */}
+          <Form />
           <h2>API posts</h2>
-          <Post />
+          <Post /> */}
         </div>
     );
   }

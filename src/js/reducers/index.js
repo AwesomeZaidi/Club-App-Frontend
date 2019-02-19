@@ -16,7 +16,7 @@ import { LOGIN_USER } from "../constants/action-types";
 
 const initialState = {
   articles: [],
-  user: "initial",
+  user: "",
   remoteArticles: []
 };
 
@@ -34,6 +34,9 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === LOGIN_USER) {
+    // console.log("state:", state);
+    // console.log("action.payload:", action.payload);
+    
     return Object.assign({}, state, {
       user: action.payload
     });

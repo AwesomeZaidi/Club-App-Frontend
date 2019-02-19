@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
+import { Redirect } from 'react-router';
 import { loginUser } from "../js/actions/index";
 import '../Styles/login.scss';
-
-const mapStateToProps = state => {
-    return { user: state.user };
-};
-
-function mapDispatchToProps(dispatch) {
-    return {
-        loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
-    };
-};
 
 class Login extends Component {
     constructor(props) {
@@ -36,22 +27,20 @@ class Login extends Component {
         event.preventDefault();
         console.log("in it");// alert(`A name was submitted: ${this.state.username} ${this.state.password}`);
         axios.post(`http://64224283.ngrok.io/login`, this.state).then((user) => {
-            console.log("user:", user);
-            
-            this.props.loginUser({ user });
-            console.log("this.props.user", this.props.user);
-            
-            // if (user.statusText === "OK") { 
-            //     // window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
-            // };
+            this.props.loginUser(user.data.token);
+            if (user.statusText === "OK") { 
+            this.props.history.push('/dashboard')
+
+            //     window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
+            };
         }).catch(console.err);
     };
 
-    render() {
-        // if (this.state.user !== '') {
-        //     return <Redirect to='/dashboard' />
-        // };
-        // console.log("USER HERE:", this.store.user);
+    render() {  
+        
+        if (this.props.user.length !== 0) {
+            return <Redirect to='/dashboard' />
+        };
         
         return (
             <div>
@@ -66,6 +55,17 @@ class Login extends Component {
         );
     };
 };
+
+const mapStateToProps = state => {
+    return { user: state.user };
+};
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+    };
+};
+
 const LoginUser = connect(mapStateToProps, mapDispatchToProps)(Login);
 
 
