@@ -1,18 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
-import store from "./store";
-
+import store from "./js/store";
+// import index from "./js/index"
+import App from './App';
 axios.defaults.withCredentials = true  // enable axios post cookie, default false
 
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render((
+  
   <Provider store={store}>
     <Router>
       <App />

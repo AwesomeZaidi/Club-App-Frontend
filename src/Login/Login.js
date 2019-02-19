@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import { connect } from "react-redux";
+import uuidv1 from "uuid";
+import { loginUser } from "../js/actions/index";
 
-
+function mapDispatchToProps(dispatch) {
+    return {
+        loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+    };
+};
 class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: '',
             username: '',
             password: ''
         };
@@ -19,28 +25,26 @@ class Login extends Component {
     };
     
     handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
+        this.setState({ [event.target.id]: event.target.value });
     };
 
-    handleSubmit = event  => {
-        console.log("in it");// alert(`A name was submitted: ${this.state.username} ${this.state.password}`);
+    handleSubmit = event => {
         event.preventDefault();
-        axios.post(`http://ab259c5a.ngrok.io/login`, this.state).then((user) => {
-            this.setState({
-                user: user
-            });
-            // if (user.statusText === "OK") { 
-            //     window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
-            // }          
+        console.log("in it");// alert(`A name was submitted: ${this.state.username} ${this.state.password}`);
+        axios.post(`http://5915c677.ngrok.io/login`, this.state).then((user) => {
+            console.log("user:", user);
+            
+            this.props.loginUser({ user });
+            if (user.statusText === "OK") { 
+                window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
+            };
         }).catch(console.err);
     };
 
     render() {
-        if (this.state.user !== '') {
-            return <Redirect to='/dashboard' />
-        };
+        // if (this.state.user !== '') {
+        //     return <Redirect to='/dashboard' />
+        // };
         return (
             <div>
                 <form className='login-form' onSubmit={this.handleSubmit}>
@@ -54,5 +58,7 @@ class Login extends Component {
         );
     };
 };
+const LoginUser = connect(null, mapDispatchToProps)(Login);
 
-export default Login;
+
+export default LoginUser;
