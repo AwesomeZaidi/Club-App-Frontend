@@ -5,43 +5,37 @@
 // import errorReducer from "./errorReducer";
 
 
-// export default combineReducers({
+// export defau, lt combineReducers({
 //   auth: authReducer,
 //   errors: errorReducer
 // });
 
-import { ADD_ARTICLE } from "../constants/action-types";
-import { LOGIN_USER } from "../constants/action-types";
+import { ADD_ARTICLE, DATA_LOADED, HANDLE_LOGIN, LOGOUT_USER } from "../constants/action-types";
 
 
 const initialState = {
   articles: [],
-  user: "",
+  token: "",
   remoteArticles: []
 };
 
 function rootReducer(state = initialState, action) {
-  if (action.type === ADD_ARTICLE) {
-    return Object.assign({}, state, {
-      articles: state.articles.concat(action.payload)
-    });
+  switch(action.type) {
+    case ADD_ARTICLE: 
+      return { ...state, articles: state.articles.concat(action.payload) }
+      break;
+    case HANDLE_LOGIN: 
+      return {...state, token: action.payload}
+      break;
+    case DATA_LOADED:
+      return {...state, remoteArticles: state.remoteArticles.concat(action.payload)}
+      break;
+    case LOGOUT_USER:
+      return {...state, token: ""}
+      break;
+    default: 
+        return state;
   }
-
-  if (action.type === "DATA_LOADED") {
-    return Object.assign({}, state, {
-      remoteArticles: state.remoteArticles.concat(action.payload)
-    });
-  }
-
-  if (action.type === LOGIN_USER) {
-    // console.log("state:", state);
-    // console.log("action.payload:", action.payload);
-    
-    return Object.assign({}, state, {
-      user: action.payload
-    });
-  }
-  return state;
 };
 
 

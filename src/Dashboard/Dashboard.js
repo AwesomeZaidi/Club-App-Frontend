@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 
 const mapStateToProps = state => {
-    return { articles: state.articles, user: state.user };
+    return { articles: state.articles, token: state.token };
 };
 
 class Dashboard extends Component {
@@ -13,7 +13,7 @@ class Dashboard extends Component {
     };
 
     render() {
-        if (this.props.user.length === 0) {
+        if (this.props.token.length === 0) {
             return <Redirect to='/login' />
         };
         return (
@@ -23,7 +23,7 @@ class Dashboard extends Component {
         );
     };
 };
-const DashboardD = connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);
 
 
-export default DashboardD;
+// export default Dashboard;

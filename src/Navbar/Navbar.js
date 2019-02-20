@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../Images/logo.svg';
 import '../Styles/navbar.scss';
+import { logoutUser } from '../js/actions/';
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
   render() {
@@ -12,7 +14,8 @@ class Navbar extends Component {
           <Link to='/' className="active" >APPLY</Link>
           {/* <a href="/contact">Contact</a> */}
           <Link to='/about'>APPLY</Link>
-          <Link to='/login'>APPLY</Link>
+          {/* <Link>LOGOUT</Link> */}
+          <button onClick={this.props.logoutUser}>Logout</button>
   
         </div>
       </div>
@@ -20,4 +23,5 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default connect(null, {logoutUser})(Navbar);
+// currying a function, kinda like a thunk lol
