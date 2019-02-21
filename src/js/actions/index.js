@@ -13,20 +13,14 @@ export function addArticle(payload) {
 
 // action 
 export function loginUser(loginState) {
-    // console.log("payload:", payload);
-    
-    // return { type: LOGIN_USER, payload }
-
     return (dispatcher) => {
-        axios.post(`http://8137bc61.ngrok.io/login`, loginState).then((user) => {
+        axios.post(`http://4ee12370.ngrok.io/login`, loginState).then((user) => {
             dispatcher(handleLogin(user.data.token)); // THUNKED IT!
         }).catch(console.err);
     }
 
 }
-
 // const objCopy = JSON.parse(JSON.stringify(obj))
-
 export const handleLogin = (token) => {
     return {
         type: HANDLE_LOGIN, 
