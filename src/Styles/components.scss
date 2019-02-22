@@ -4,3 +4,24 @@ html, body {
     font-size: 16px;
 }
 
+.btn-primary {
+    background-color: #087cb8;
+    border-color: #087cb8;
+    color: white;
+    border: 1px solid #087cb8;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: all 150ms ease-in;
+    font-size: 1.25rem;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    min-width: 102px;
+    padding: 6px 12px;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: #087cb8;
+}

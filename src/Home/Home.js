@@ -8,7 +8,7 @@ class Home extends Component {
         <div className="home-page">
             <section className="top">
                 <h1>Make School Club App</h1>
-                <button onClick={() => window.location.href = '/login'}>Login</button>
+                <button className="btn-primary" onClick={() => window.location.href = '/login'}>Login</button>
             </section>
         </div>
         );
