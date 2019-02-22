@@ -241,3 +241,22 @@ With that in place we’re ready to update our reducer with the new action type.
 With redux-thunk you can return functions from action creators, not only objects. You can do asynchronous work inside your actions and dispatch other actions in response to AJAX calls.
 
 When to use redux-thunk? redux-thunk is a nice middleware that works very well for simpler use cases. But if your asynchronous logic involves more complex scenarios then redux saga might be a better fit.
+
+
+# New Research On My Own
+
+## Actions
+Actions are payloads of information that send data from your application to your store. They are the only source of information for the store. You send them to the store using `store.dispatch()`
+
+Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
+
+My process: Set the action const type in /actions/types, export and import it into your Action Creators, in the /actions/, Action creators are exactly that—functions that create actions. I believe, this here can dispatch a signal
+
+It's easy to conflate the terms “action” and “action creator” - so ask Mitchell to clarify what exactly is the action, is it the object type we define?
+
+To actually initiate a dispatch, pass the result to the dispatch() function
+
+Alternatively, you can create a bound action creator that automatically dispatches
+example: https://redux.js.org/basics/actions
+
+Now let's define some reducers to specify how the state updates when you dispatch these actions!

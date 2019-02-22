@@ -25,20 +25,19 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log("in it");// alert(`A name was submitted: ${this.state.username} ${this.state.password}`);
-        axios.post(`http://64224283.ngrok.io/login`, this.state).then((user) => {
-            this.props.loginUser(user.data.token);
-            if (user.statusText === "OK") { 
-            this.props.history.push('/dashboard')
+        this.props.loginUser(this.state);
 
-            //     window.location.href = '/dashboard'; // redirect was not working here, i don't know why.
-            };
-        }).catch(console.err);
+        // axios.post(`http://8137bc61.ngrok.io/login`, this.state).then((user) => {
+        //     this.props.loginUser(user.data.token);
+        //     if (user.statusText === "OK") {
+        //         localStorage.setItem("dataItem:", user.data.token)
+        //         this.props.history.push('/dashboard');
+        //     };
+        // }).catch(console.err);
     };
 
     render() {  
-        
-        if (this.props.user.length !== 0) {
+        if (this.props.token.length !== 0) {
             return <Redirect to='/dashboard' />
         };
         
@@ -57,16 +56,22 @@ class Login extends Component {
 };
 
 const mapStateToProps = state => {
-    return { user: state.user };
+    return { token: state.token };
 };
 
-function mapDispatchToProps(dispatch) {
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+//     };
+// };
+
+function mapDispatchToProps() {
     return {
-        loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+        loginUser // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
     };
 };
 
-const LoginUser = connect(mapStateToProps, mapDispatchToProps)(Login);
+const LoginUser = connect(mapStateToProps, mapDispatchToProps())(Login);
 
 
 export default LoginUser;

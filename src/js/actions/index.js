@@ -1,16 +1,31 @@
 // src/js/actions/index.js
 
-import { ADD_ARTICLE } from "../constants/action-types";
-import { LOGIN_USER } from "../constants/action-types";
+import { ADD_ARTICLE, HANDLE_LOGIN, LOGOUT_USER } from "../constants/action-types";
+import axios from "axios";
+
+export const logoutUser = () => {
+    return { type: LOGOUT_USER }
+};
 
 export function addArticle(payload) {
     return { type: ADD_ARTICLE, payload }
 };
 
-export function loginUser(payload) {
-    console.log("payload:", payload);
-    
-    return { type: LOGIN_USER, payload }
+// action 
+export function loginUser(loginState) {
+    return (dispatcher) => {
+        axios.post(`http://4ee12370.ngrok.io/login`, loginState).then((user) => {
+            dispatcher(handleLogin(user.data.token)); // THUNKED IT!
+        }).catch(console.err);
+    }
+
+}
+// const objCopy = JSON.parse(JSON.stringify(obj))
+export const handleLogin = (token) => {
+    return {
+        type: HANDLE_LOGIN, 
+        payload: token
+    }
 }
 
 // our new action creator.
