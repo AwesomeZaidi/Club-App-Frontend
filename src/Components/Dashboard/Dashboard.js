@@ -3,17 +3,13 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 
 const mapStateToProps = state => {
-    return { articles: state.articles, token: state.token };
+    return { token: state.token };
 };
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {};
-    };
 
     render() {
-        if (this.props.token.length === 0) {
+        if (!this.props.token) {
             return <Redirect to='/login' />
         };
         return (

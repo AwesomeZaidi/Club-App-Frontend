@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
-import { loginUser } from "../js/actions/index";
-import '../Styles/login.scss';
+import { signupUser } from "../../js/actions/index";
+// import '../Styles/user-form.scss';
 
-class Login extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props);
 
@@ -25,15 +24,7 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.loginUser(this.state);
-
-        // axios.post(`http://8137bc61.ngrok.io/login`, this.state).then((user) => {
-        //     this.props.loginUser(user.data.token);
-        //     if (user.statusText === "OK") {
-        //         localStorage.setItem("dataItem:", user.data.token)
-        //         this.props.history.push('/dashboard');
-        //     };
-        // }).catch(console.err);
+        this.props.signupUser(this.state);
     };
 
     render() {  
@@ -43,12 +34,13 @@ class Login extends Component {
         
         return (
             <div>
-                <form className='login-form' onSubmit={this.handleSubmit}>
+                {/* opportunity to use OOCSS with these forms */}
+                <form className='user-form signup-form' onSubmit={this.handleSubmit}>
                     <label htmlFor='username'>Username</label>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
                     <label htmlFor='password'>Password</label>                    
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
-                    <button type='submit' disabled={!this.validateForm()} >Submit</button>
+                    <button className="btn-primary" type='submit' disabled={!this.validateForm()} >Submit</button>
                 </form>
             </div>
         );
@@ -59,19 +51,13 @@ const mapStateToProps = state => {
     return { token: state.token };
 };
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         loginUser: user => dispatch(loginUser(user)) // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
-//     };
-// };
-
 function mapDispatchToProps() {
     return {
-        loginUser // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+        signupUser
     };
 };
 
-const LoginUser = connect(mapStateToProps, mapDispatchToProps())(Login);
+const SignupUser = connect(mapStateToProps, mapDispatchToProps())(Signup);
 
 
-export default LoginUser;
+export default SignupUser;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/home.scss';
+import '../../Styles/home.scss';
 
 
 class Home extends Component {
@@ -8,7 +8,7 @@ class Home extends Component {
         <div className="home-page">
             <section className="top">
                 <h1 className="h1-primary">Make School Club App</h1>
-                <p class="p-primary">Earn your Bachelor's in Applied Computer Science immersed in a community of makers empowered to shape the world</p>
+                <p className="p-primary">Earn your Bachelor's in Applied Computer Science immersed in a community of makers empowered to shape the world</p>
                 <button className="btn-primary" onClick={() => window.location.href = '/login'}>Login</button>
                 <button className="btn-primary" onClick={() => window.location.href = '/signup'}>Signup</button>
 

@@ -10,7 +10,7 @@
 //   errors: errorReducer
 // });
 
-import { ADD_ARTICLE, DATA_LOADED, HANDLE_LOGIN, LOGOUT_USER } from "../constants/action-types";
+import { ADD_ARTICLE, DATA_LOADED, HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER } from "../constants/action-types";
 
 
 const initialState = {
@@ -25,6 +25,9 @@ function rootReducer(state = initialState, action) {
       return { ...state, articles: state.articles.concat(action.payload) }
       break;
     case HANDLE_LOGIN: 
+      return {...state, token: action.payload}
+      break;
+    case SIGNUP_USER: 
       return {...state, token: action.payload}
       break;
     case DATA_LOADED:

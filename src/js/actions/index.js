@@ -1,6 +1,6 @@
 // src/js/actions/index.js
 
-import { ADD_ARTICLE, HANDLE_LOGIN, LOGOUT_USER } from "../constants/action-types";
+import { ADD_ARTICLE, HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
@@ -11,10 +11,10 @@ export function addArticle(payload) {
     return { type: ADD_ARTICLE, payload }
 };
 
-// action 
+// LOGIN ACTION 
 export function loginUser(loginState) {
     return (dispatcher) => {
-        axios.post(`http://4ee12370.ngrok.io/login`, loginState).then((user) => {
+        axios.post(`http://4b067828.ngrok.io/login`, loginState).then((user) => {
             dispatcher(handleLogin(user.data.token)); // THUNKED IT!
         }).catch(console.err);
     }
@@ -24,6 +24,27 @@ export function loginUser(loginState) {
 export const handleLogin = (token) => {
     return {
         type: HANDLE_LOGIN, 
+        payload: token
+    }
+}
+
+// SIGNUP USER ACTION 
+export function signupUser(signupState) {
+    console.log("in signup user function of actions");
+    
+    return (dispatcher) => {
+        axios.post(`http://4b067828.ngrok.io/signup`, signupState).then((user) => {
+            console.log("saved user to backend", user);
+            dispatcher(handleSignup(user.data.token));
+        }).catch(console.err);
+    }
+
+}
+
+export const handleSignup = (token) => {
+    console.log("in dispatched handleSignup");
+    return {
+        type: SIGNUP_USER, 
         payload: token
     }
 }

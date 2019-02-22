@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../Images/logo.svg';
-import '../Styles/navbar.scss';
-import { logoutUser } from '../js/actions/';
+// import { Link } from 'react-router-dom';
+import logo from '../../Images/logo.svg';
+import '../../Styles/navbar.scss';
+import { logoutUser } from '../../js/actions/';
 import { connect } from 'react-redux';
 // import Button from '../Button/Button';
 
@@ -32,9 +32,9 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { token: state.token };
-};
+// const mapStateToProps = state => {
+//   return { token: state.token };
+// };
 
 export default connect(null, {logoutUser})(Navbar);
 // currying a function, kinda like a thunk lol

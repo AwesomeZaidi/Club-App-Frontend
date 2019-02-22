@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {getData} from "../js/actions/index"
+import {getData} from "../../js/actions/index"
 
 export class Post extends Component {
   // eslint-disable-next-line no-useless-constructor
