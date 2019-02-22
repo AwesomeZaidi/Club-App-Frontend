@@ -1,7 +1,11 @@
 .home-page {
     .top {
-        height: 30vh;
         background-image: url(../Images/homepage-hero.jpg);
         background-size: cover;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 }

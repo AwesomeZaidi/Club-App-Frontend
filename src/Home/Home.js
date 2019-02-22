@@ -7,8 +7,11 @@ class Home extends Component {
         return (          
         <div className="home-page">
             <section className="top">
-                <h1>Make School Club App</h1>
+                <h1 className="h1-primary">Make School Club App</h1>
+                <p class="p-primary">Earn your Bachelor's in Applied Computer Science immersed in a community of makers empowered to shape the world</p>
                 <button className="btn-primary" onClick={() => window.location.href = '/login'}>Login</button>
+                <button className="btn-primary" onClick={() => window.location.href = '/signup'}>Signup</button>
+
             </section>
         </div>
         );
