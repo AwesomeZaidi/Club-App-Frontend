@@ -41,7 +41,7 @@ class Login extends Component {
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
                     <label htmlFor='password'>Password</label>                    
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
-                    <button className="btn-primary" type='submit' disabled={!this.validateForm()} >Submit</button>
+                    <button className="btn-primary" type='submit' disabled={!this.validateForm()} >Submit</button> 
                 </form>
             </div>
         );
