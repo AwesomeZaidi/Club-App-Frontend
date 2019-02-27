@@ -28,7 +28,9 @@ class Login extends Component {
     };
 
     render() {  
-        if (this.props.token) {
+        console.log("this.props.user:", this.props.user);
+        
+        if (this.props.user) {
             return <Redirect to='/dashboard' />
         };
         
@@ -47,7 +49,7 @@ class Login extends Component {
 };
 
 const mapStateToProps = state => {
-    return { token: state.token };
+    return { user: state.user };
 };
 
 function mapDispatchToProps() {

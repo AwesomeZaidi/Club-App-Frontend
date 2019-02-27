@@ -9,6 +9,13 @@ import { connect } from 'react-redux';
 
 class Navbar extends Component {
 
+  showLogout() {
+    if (this.props.user) {
+      return <button onClick={this.props.logoutUser}>Logout</button>
+    }
+    return null;
+  }
+
   render() {
     // function LogoutButton(props) {
     //   if (this.props.token) {
@@ -24,7 +31,7 @@ class Navbar extends Component {
           {/* <Link to='/about'>APPLY</Link> */}
           {/* <Link>LOGOUT</Link> */}
           {/* {this.LogoutButton(this.props)} */}
-          <button onClick={this.props.logoutUser}>Logout</button>
+          {this.showLogout()}
   
         </div>
       </div>
@@ -32,9 +39,8 @@ class Navbar extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return { token: state.token };
-// };
+const mapStateToProps = state => {
+  return { user: state.user };
+};
 
-export default connect(null, {logoutUser})(Navbar);
-// currying a function, kinda like a thunk lol
+export default connect(mapStateToProps, {logoutUser})(Navbar);

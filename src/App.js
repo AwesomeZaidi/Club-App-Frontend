@@ -5,6 +5,8 @@ import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/Login/Login';
 import Signup from './Components/Signup/Signup';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Settings from './Components/Settings/Settings';
+
 // import List from "./List/List";
 // import Form from "./Form/Form";
 // import Post from "./Posts/Posts";
@@ -18,12 +20,7 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/dashboard' component={Dashboard} />
-          {/* <h2>Articles Example</h2>
-          <List />
-          <h2>Add a new article</h2>
-          <Form />
-          <h2>API posts</h2>
-          <Post /> */}
+          <Route exact path='/settings' component={Settings} />
         </div>
     );
   }

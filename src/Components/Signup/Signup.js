@@ -28,7 +28,7 @@ class Signup extends Component {
     };
 
     render() {  
-        if (this.props.token.length !== 0) {
+        if (this.props.user) {
             return <Redirect to='/dashboard' />
         };
         
@@ -48,7 +48,7 @@ class Signup extends Component {
 };
 
 const mapStateToProps = state => {
-    return { token: state.token };
+    return { user: state.user };
 };
 
 function mapDispatchToProps() {
