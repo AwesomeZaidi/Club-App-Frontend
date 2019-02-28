@@ -1,10 +1,10 @@
 // src/js/actions/index.js
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
-    return { type: LOGOUT_USER }
+    return { type: LOGOUT_USER };
 };
 
 // LOGIN ACTION 
@@ -46,7 +46,6 @@ export const handleSignup = (user, token) => {
 export function updateSettings(userFormState, token) {
     return (dispatcher) => {
         axios.put(`/settings`, {userFormState, token}).then((res) => {
-            console.log("res:", res.data.user);
             dispatcher(handleSettings(res.data.user));
         }).catch(console.err);
     };
@@ -58,3 +57,23 @@ export const handleSettings = (user) => {
         payload: user
     };
 };
+
+export function requestClub(userData, clubData) {
+    console.log("here");
+    console.log("userData:", userData);    
+    console.log("clubData:", clubData);
+    return (dispatcher) => {
+        console.log("in return");
+        axios.post(`/requestClub`, {userData, clubData}).then(res => {
+            console.log("res:", res.data);
+            dispatcher(handleRequestClub(res.data.user));
+        }).catch(console.err);
+    };
+};
+
+export const handleRequestClub = (user) => {
+    return {
+        type: REQUEST_CLUB,
+        payload: user
+    };
+}

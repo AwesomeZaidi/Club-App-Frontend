@@ -7,3 +7,4 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const HANDLE_LOGIN = "HANDLE_LOGIN";
 export const SIGNUP_USER = "SIGNUP_USER";
 export const HANDLE_SETTINGS = "HANDLE_SETTINGS";
+export const REQUEST_CLUB = "REQUEST_CLUB";

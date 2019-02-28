@@ -10,7 +10,7 @@
 //   errors: errorReducer
 // });
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB } from "../constants/action-types";
 
 
 const initialState = {
@@ -27,6 +27,8 @@ function rootReducer(state = initialState, action) {
     case LOGOUT_USER:
       return {...state, user: "", token: ""}
     case HANDLE_SETTINGS:
+      return {...state, user: action.payload}
+    case REQUEST_CLUB:
       return {...state, user: action.payload}
     default: 
         return state;
