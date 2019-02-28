@@ -64,8 +64,8 @@ class Dashboard extends Component {
         };
     };
 
-    adminView() {
-        this.props.viewAllClubs(this.props.user);
+    async adminView() {
+        await this.props.viewAllClubs(this.props.user);
         console.log("adminviewwww");
         
         return (
@@ -74,7 +74,7 @@ class Dashboard extends Component {
 
                 <h2>Clubs requesting to join</h2>
                 <ul>
-                    {this.props.clubs}
+                    {/* {this.props.clubs} */}
                 </ul>
             </div>
         );

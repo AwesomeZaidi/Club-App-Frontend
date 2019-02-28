@@ -82,13 +82,14 @@ export function viewAllClubs(userData) {
     return (dispatcher) => {
         console.log("userDataa:", userData);
         axios.post(`/getAllClubs`, userData).then((res) => {
-            console.log("res.data.clubs:", res.data.clubs);
+            console.log("res.data.clubs:", res.data.clubs); 
             dispatcher(handleAllClubs(res.data.clubs));
         }).catch(console.err);
     };
 };
 
 export const handleAllClubs = (clubs) => {
+    console.log("CLUBS:", clubs);
     return {
         type: VIEW_ALL_CLUBS,
         payload: clubs
