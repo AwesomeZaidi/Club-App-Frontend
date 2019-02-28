@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
-import { requestClub } from "../../js/actions/index";
+import { requestClub, viewAllClubs } from "../../js/actions/index";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class Dashboard extends Component {
             title: ''
         };
     };
+   
     // componentDidMount() {
     //     // call the action function to get the data here.
     // }    
@@ -64,25 +65,38 @@ class Dashboard extends Component {
     };
 
     adminView() {
+        this.props.viewAllClubs(this.props.user);
+        console.log("adminviewwww");
+        
         return (
             <div>
                 <h1>Admin Dashboard</h1>
+
+                <h2>Clubs requesting to join</h2>
+                <ul>
+                    {this.props.clubs}
+                </ul>
             </div>
         );
     };
 
     render() {
+        console.log("render called");
         const user = this.props.user;
+        console.log("USER:", user);
         switch(user.type) {
             case false || undefined:
+                console.log("false hit");
                 return <Redirect to='/login' />
             case 'member':
-                console.log("ere");
+                console.log("member hit");
                 return this.memberView();
             case 'leader':
-            return this.leaderView();
+                console.log("leader hit");
+                return this.leaderView();
             case 'admin':
-            return this.adminView();
+                console.log("admin hit");
+                return this.adminView();
             default:
                 return null;
         };
@@ -90,12 +104,13 @@ class Dashboard extends Component {
 };
 
 const mapStateToProps = state => {
-    return { user: state.user };
+    return { user: state.user, clubs: state.clubs };
 };
 
 function mapDispatchToProps() {
     return {
-        requestClub // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+        requestClub,
+        viewAllClubs
     };
 };
 

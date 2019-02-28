@@ -10,12 +10,13 @@
 //   errors: errorReducer
 // });
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS } from "../constants/action-types";
 
 
 const initialState = {
   token: "",
-  user: ""
+  user: "",
+  clubs: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -30,6 +31,8 @@ function rootReducer(state = initialState, action) {
       return {...state, user: action.payload}
     case REQUEST_CLUB:
       return {...state, user: action.payload}
+    case VIEW_ALL_CLUBS:
+      return {...state, clubs: action.payload}
     default: 
         return state;
   }
