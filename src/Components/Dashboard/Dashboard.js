@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
-import { requestClub, viewAllClubs } from "../../js/actions/index";
+import { requestClub, viewAllClubs, getClubLeaderClub } from "../../js/actions/index";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -32,14 +32,14 @@ class Dashboard extends Component {
             </div>
         );
     }
-    
-    componentDidMount() {
-
-    }
 
     componentWillMount() {
         if (this.props.user.type === `admin`) {
             this.props.viewAllClubs(this.props.user);
+        };
+        if (this.props.user.type === `leader` && this.props.user.accepted) {
+            console.log("this.props.user.clubs[0]:", this.props.user.clubs[0]);
+            this.props.getClubLeaderClub(this.props.user.clubs[0], this.props.user._id);
         };
     };
 
@@ -61,12 +61,15 @@ class Dashboard extends Component {
         );
 
         const leaderDashboard = (
-            <h1>Club leader dashboard</h1>
+            <div>
+                <h1>Club leader dashboard</h1>
+                <p>{JSON.stringify(this.props.leaderClub.title)}</p>
+            </div>
         );        
         if (!this.props.user.requested || this.props.user.requested === false) {
             return request;
         } else if (this.props.user.requested) {
-            if (this.props.user.accepted) {
+            if (this.props.user.accepted) {             
                 return leaderDashboard;
             } else if (this.props.user.accepted === false || !this.props.user.accepted) {
                 return waitingVerification;
@@ -120,13 +123,14 @@ class Dashboard extends Component {
 };
 
 const mapStateToProps = state => {
-    return { user: state.user, clubs: state.clubs };
+    return { user: state.user, clubs: state.clubs, leaderClub: state.leaderClub };
 };
 
 function mapDispatchToProps() {
     return {
         requestClub,
-        viewAllClubs
+        viewAllClubs,
+        getClubLeaderClub
     };
 };
 
