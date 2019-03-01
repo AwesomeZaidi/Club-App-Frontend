@@ -27,7 +27,7 @@ function rootReducer(state = initialState, action) {
     case SIGNUP_USER:
       return {...state, token: action.token_payload, user: action.user_payload}
     case LOGOUT_USER:
-      return {...state, user: "", token: ""}
+      return {...state, user: "", token: "", clubs: []}
     case HANDLE_SETTINGS:
       console.log("IN HANDLE_SETTINGS CASE");
     

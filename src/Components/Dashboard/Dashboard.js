@@ -38,8 +38,11 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        this.props.viewAllClubs(this.props.user);
-    }
+        if (this.props.user.type === `admin`) {
+            this.props.viewAllClubs(this.props.user);
+        };
+    };
+
     leaderView(user) {
         const request = (
             <div>
