@@ -27,6 +27,7 @@ export const handleLogin = (user, token) => {
 
 // SIGNUP USER ACTION 
 export function signupUser(signupState) {
+    console.log("IN SIGNUP USER ACTION");
     return (dispatcher) => {
         axios.post(`/signup`, signupState).then((res) => {
             dispatcher(handleSignup(res.data.user, res.data.token));
@@ -36,7 +37,7 @@ export function signupUser(signupState) {
 
 export const handleSignup = (user, token) => {
     return {
-        type: SIGNUP_USER, 
+        type: SIGNUP_USER,
         user_payload: user,
         token_payload: token
     };
@@ -84,7 +85,9 @@ export function viewAllClubs(userData) {
         axios.post(`/getAllClubs`, userData).then((res) => {
             console.log("res.data.clubs:", res.data.clubs); 
             dispatcher(handleAllClubs(res.data.clubs));
-        }).catch(console.err);
+        }).catch(err => {
+            console.log("err:", err);
+        });
     };
 };
 

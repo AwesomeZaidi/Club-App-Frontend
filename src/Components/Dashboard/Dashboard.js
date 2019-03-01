@@ -32,7 +32,14 @@ class Dashboard extends Component {
             </div>
         );
     }
+    
+    componentDidMount() {
 
+    }
+
+    componentWillMount() {
+        this.props.viewAllClubs(this.props.user);
+    }
     leaderView(user) {
         const request = (
             <div>
@@ -64,9 +71,10 @@ class Dashboard extends Component {
         };
     };
 
-    async adminView() {
-        await this.props.viewAllClubs(this.props.user);
+     adminView() {
+        
         console.log("adminviewwww");
+        console.log(this.props.clubs)
         
         return (
             <div>
@@ -74,6 +82,11 @@ class Dashboard extends Component {
 
                 <h2>Clubs requesting to join</h2>
                 <ul>
+                    {this.props.clubs.filter(club => 
+                        club.title === "Test"
+                    ).map((club, index) => (
+                        <li>{club.title}</li>
+                    ))}
                     {/* {this.props.clubs} */}
                 </ul>
             </div>
