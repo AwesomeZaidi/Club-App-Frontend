@@ -40,7 +40,7 @@ const store = createStore(
   storeEnhancers(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
+store.subscribe(() => { //TODO: look into how this works
   saveState(store.getState())
 });
 
