@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Home from './Components/Home/Home';
+import Home from './Components/Home/Home.jsx';
 import Navbar from './Components/Navbar/Navbar';
-import Login from './Components/Login/Login';
+import Login from './Components/Login/Login.jsx';
 import Signup from './Components/Signup/Signup';
-import Dashboard from './Components/Dashboard/Dashboard';
+import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import Settings from './Components/Settings/Settings';
 
 // import List from "./List/List";
