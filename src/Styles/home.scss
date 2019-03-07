@@ -1,11 +1,18 @@
 .home-page {
-    .top {
-        background-image: url(../Images/homepage-hero.jpg);
-        background-size: cover;
-
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        max-width: 50vw;
+        margin: 3em 0em 1em 0em;
+    }
+    h1 {
+        color: #303030;
+        margin-bottom: .5em;
+    }
+    button {
+        margin: .5em;
+        width: 10em;
     }
 }
