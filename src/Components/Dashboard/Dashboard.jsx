@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import { requestClub, viewAllClubs, getClubLeaderClub } from "../../js/actions/index";
+import logo from '../../Images/logo-only.png';
+import avatar from '../../Images/temp-img.png';
+import '../../Styles/dashboard.scss';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -16,6 +19,7 @@ class Dashboard extends Component {
     //     // call the action function to get the data here.
     // }    
 
+    
     handleChange = event => {
         this.setState({ [event.target.id]: event.target.value });
     };
@@ -25,27 +29,46 @@ class Dashboard extends Component {
         this.props.requestClub(this.props.user, this.state);
     };
 
-    memberView() {
-        return (
-            <div>
-                <h1>Member Dashboard</h1>
-            </div>
-        );
-    }
-
     componentWillMount() {
         if (this.props.user.type === `admin`) {
             this.props.viewAllClubs(this.props.user);
         };
         if (this.props.user.type === `leader` && this.props.user.accepted) {
-            console.log("this.props.user.clubs[0]:", this.props.user.clubs[0]);
             this.props.getClubLeaderClub(this.props.user.clubs[0], this.props.user._id);
         };
+    };
+    
+    cardLink() {
+        if (this.props.user.clubs.length < 1) {
+            return (
+                <div className="card">
+                    <p onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    };
+
+    memberView() {
+        return (        
+            <div className="dashboard">
+                <div className="top">
+                    <img className="small-img-only" src={logo} alt="Make School" />
+                    <img className="med-logo-only" src={ avatar } alt="Avatar" />
+                </div>
+                <h1>Welcome, {this.props.user.username}</h1>
+                <h2>Upcoming Events</h2>
+                <div className="events-cards">
+                    {this.cardLink()}
+                </div>
+            </div>
+        );
     };
 
     leaderView(user) {
         const request = (
-            <div>
+            <div className="dashboard">
             <h1>Leader Request Start Club Form</h1>
             <form onSubmit={this.handleSubmit}>
                 <legend>Start a club</legend>
@@ -65,7 +88,8 @@ class Dashboard extends Component {
                 <h1>Club leader dashboard</h1>
                 <p>{JSON.stringify(this.props.leaderClub.title)}</p>
             </div>
-        );        
+        );  
+
         if (!this.props.user.requested || this.props.user.requested === false) {
             return request;
         } else if (this.props.user.requested) {
@@ -77,11 +101,7 @@ class Dashboard extends Component {
         };
     };
 
-     adminView() {
-        
-        console.log("adminviewwww");
-        console.log(this.props.clubs)
-        
+     adminView() {   
         return (
             <div>
                 <h1>Admin Dashboard</h1>
@@ -100,21 +120,15 @@ class Dashboard extends Component {
     };
 
     render() {
-        console.log("render called");
         const user = this.props.user;
-        console.log("USER:", user);
         switch(user.type) {
             case false || undefined:
-                console.log("false hit");
                 return <Redirect to='/login' />
             case 'member':
-                console.log("member hit");
                 return this.memberView();
             case 'leader':
-                console.log("leader hit");
                 return this.leaderView();
             case 'admin':
-                console.log("admin hit");
                 return this.adminView();
             default:
                 return null;

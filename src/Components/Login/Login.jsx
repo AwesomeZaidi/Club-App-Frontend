@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import { loginUser } from "../../js/actions/index";
-import '../../Styles/user-form.scss';
+import logo from '../../Images/logo-only.png';
 
 class Login extends Component {
     constructor(props) {
@@ -35,11 +35,11 @@ class Login extends Component {
         };
         
         return (
-            <div>
-                <form className='user-form' onSubmit={this.handleSubmit}>
-                    <label htmlFor='username'>Username</label>
-                    <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor='password'>Password</label>                    
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1>Login</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />                  
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className="btn-primary" type='submit' disabled={!this.validateForm()} >Submit</button> 
                 </form>
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps() {
     return {
-        loginUser // I DON'T KNOW HOW THIS IS WORKING RIGHT HERE D;
+        loginUser // value is the function we import at the top
     };
 };
 
