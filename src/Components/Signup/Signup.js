@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import { signupUser } from "../../js/actions/index";
-// import '../Styles/user-form.scss';
 
 class Signup extends Component {
     constructor(props) {
@@ -82,7 +81,6 @@ class Signup extends Component {
     };
 
     render() { 
-        console.log("whoIsSigningUp:", this.state.whoIsSigningUp);
         if (this.props.user) {
             return <Redirect to='/dashboard' />
         }

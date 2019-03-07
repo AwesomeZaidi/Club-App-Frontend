@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import { updateSettings } from "../../js/actions/index";
 
-import '../../Styles/user-form.scss';
-
 class Settings extends Component {
     constructor(props) {
         super(props);
