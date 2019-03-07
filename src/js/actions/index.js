@@ -9,28 +9,29 @@ export const logoutUser = () => {
 
 // LOGIN ACTION 
 export function loginUser(loginState) {
-    return (dispatcher) => {
+    return (dispatcher) => { // read more into dispatcher
         axios.post(`/login`, loginState).then((res) => {
-            console.log("res.data.user", res.data.user);
-            dispatcher(handleLogin(res.data.user, res.data.token)); // THUNKED IT!
+            dispatcher(handleLogin(res.data.user)); // THUNKED IT!
         }).catch(console.err);
     };
 };
 
-export const handleLogin = (user, token) => {
+// ACTION CREATE handeLogin
+export const handleLogin = (user) => {
     return {
         type: HANDLE_LOGIN,
-        user_payload: user,
-        token_payload: token
+        payload: user
     };
 };
 
 // SIGNUP USER ACTION 
 export function signupUser(signupState) {
     console.log("IN SIGNUP USER ACTION");
+    console.log("signupState:", signupState);
     return (dispatcher) => {
         axios.post(`/signup`, signupState).then((res) => {
-            dispatcher(handleSignup(res.data.user, res.data.token));
+            console.log("res.data:", res.data);
+            dispatcher(handleSignup(res.data.user));
         }).catch(console.err);
     };
 };
