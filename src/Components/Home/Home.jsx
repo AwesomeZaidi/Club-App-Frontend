@@ -8,8 +8,8 @@ class Home extends Component {
         <div className="home-page">
             <img src={logo} alt="Make School"></img>
             <h1 className="h1-primary">Clubs App</h1>
-            <button className="btn-primary" onClick={() => window.location.href = '/login'}>Login</button>
-            <button className="btn-primary" onClick={() => window.location.href = '/signup'}>Signup</button>
+            <button className="black_btn" onClick={() => window.location.href = '/login'}>Login</button>
+            <button className="black_btn" onClick={() => window.location.href = '/signup'}>Signup</button>
         </div>
         );
     };

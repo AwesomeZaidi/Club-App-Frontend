@@ -68,14 +68,15 @@ class Dashboard extends Component {
 
     leaderView(user) {
         const request = (
-            <div className="dashboard">
-            <h1>Leader Request Start Club Form</h1>
-            <form onSubmit={this.handleSubmit}>
-                <legend>Start a club</legend>
-                <label htmlFor="title">Title</label>
-                <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
-                <button className="btn-primary">Submit</button>
-            </form>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1>Request a Club Form</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <legend>Start a club</legend>
+                    <label htmlFor="title">Title</label>
+                    <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
+                    <button className="black_btn">Submit</button>
+                </form>
             </div>
         );
 
@@ -108,12 +109,11 @@ class Dashboard extends Component {
 
                 <h2>Clubs requesting to join</h2>
                 <ul>
-                    {this.props.clubs.filter(club => 
-                        club.title === "Test"
-                    ).map((club, index) => (
+                    {this.props.clubs.filter(club => club.accepted == "false").map((club, index) => (
                         <li>{club.title}</li>
                     ))}
-                    {/* {this.props.clubs} */}
+                        <button className="blue_btn">Accept</button>
+                        <button className="black_btn">Deny</button>
                 </ul>
             </div>
         );
