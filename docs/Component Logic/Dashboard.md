@@ -42,6 +42,6 @@ Soo.. this means... on componentDidMount Lifecycle Method, we'll want to check i
 - ✅ If the `user.type` is `admin` then they hit the admin dashboard function.
 
 - ✅ Here they can select to view all clubs.
-View all clubs that are requesting to join.
+- ✅ View all clubs that are requesting to join.
 View all club leaders and what clubs they own.
 View all members.

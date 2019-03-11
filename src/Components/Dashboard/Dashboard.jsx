@@ -13,12 +13,8 @@ class Dashboard extends Component {
         this.state = {
             title: ''
         };
+        this.incomingRequests = this.incomingRequests.bind(this);        
     };
-   
-    // componentDidMount() {
-    //     // call the action function to get the data here.
-    // }    
-
     
     handleChange = event => {
         this.setState({ [event.target.id]: event.target.value });
@@ -102,19 +98,42 @@ class Dashboard extends Component {
         };
     };
 
-     adminView() {   
+    incomingRequests() { 
         return (
-            <div>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1>Incoming Requests</h1>
+
+                <ul>
+                    {this.props.clubs.filter(club => club.accepted === "false")
+                        .map((club, index) => {
+                            console.log(club);
+                            return <li key={'mykey' + index}>{club.title}</li>
+                        }
+                    )}
+                        <button className="blue_btn">Accept</button>
+                        <button className="black_btn">Deny</button>
+                </ul>
+            </div>     
+        );
+    };
+
+    adminView() {
+        return (
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1>Admin Dashboard</h1>
 
-                <h2>Clubs requesting to join</h2>
-                <ul>
+                <button onClick={this.incomingRequests} className="blue_btn">Incoming Requests</button>
+                {/* <button onClick={() => this.allClubs} className="black_btn">All Clubs</button> */}
+
+                {/* <ul>
                     {this.props.clubs.filter(club => club.accepted == "false").map((club, index) => (
                         <li>{club.title}</li>
                     ))}
                         <button className="blue_btn">Accept</button>
                         <button className="black_btn">Deny</button>
-                </ul>
+                </ul> */}
             </div>
         );
     };
