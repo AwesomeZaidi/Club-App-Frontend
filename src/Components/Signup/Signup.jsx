@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import { signupUser } from "../../js/actions/index";
+import logo from '../../Images/logo-only.png';
 
 class Signup extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class Signup extends Component {
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
                     <label htmlFor='password'>Password</label>                    
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
-                    <button className='btn-primary' type='submit' disabled={!this.validateForm()}>Submit</button>
+                    <button className='black_btn' type='submit' disabled={!this.validateForm()}>Signup</button>
                 </form>
 
                 <p id='whoIsSigningUp' onClick={(e) => {
@@ -59,18 +60,15 @@ class Signup extends Component {
 
     MemberView() {
         return (
-            <div>
-                <h1>MEMBER VIEW Signup</h1>
-                {/* opportunity to use OOCSS with these forms */}
-                <form className='user-form signup-form' onSubmit={this.handleSubmit}>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1>Signup</h1>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor='username'>Username</label>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor='password'>Password</label> 
-                    {/* {this.state.member='leader' && (
-                        
-                    )}                    */}
+                    <label htmlFor='password'>Password</label>
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
-                    <button className='btn-primary' type='submit' disabled={!this.validateForm()}>Submit</button>
+                    <button className='black_btn' type='submit' disabled={!this.validateForm()}>Submit</button>
                 </form>
                 <p id='whoIsSigningUp' onClick={(e) => { 
                     e.memberType = 'leader'

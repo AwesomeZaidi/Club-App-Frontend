@@ -11,7 +11,7 @@ class Navbar extends Component {
 
   showLogout() {
     if (this.props.user) {
-      return <button onClick={this.props.logoutUser}>Logout</button>
+      return <button className="blue_btn" onClick={this.props.logoutUser}>Logout</button>
     }
     return null;
   }

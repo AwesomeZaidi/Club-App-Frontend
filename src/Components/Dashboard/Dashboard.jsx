@@ -12,17 +12,10 @@ class Dashboard extends Component {
 
         this.state = {
             title: ''
-        };
+        }; 
     };
-   
-    // componentDidMount() {
-    //     // call the action function to get the data here.
-    // }    
-
     
-    handleChange = event => {
-        this.setState({ [event.target.id]: event.target.value });
-    };
+    handleChange = event => this.setState({ [event.target.id]: event.target.value });
 
     handleSubmit = event => {
         event.preventDefault();
@@ -47,7 +40,7 @@ class Dashboard extends Component {
             );
         } else {
             return null;
-        }
+        };
     };
 
     memberView() {
@@ -68,14 +61,15 @@ class Dashboard extends Component {
 
     leaderView(user) {
         const request = (
-            <div className="dashboard">
-            <h1>Leader Request Start Club Form</h1>
-            <form onSubmit={this.handleSubmit}>
-                <legend>Start a club</legend>
-                <label htmlFor="title">Title</label>
-                <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
-                <button className="btn-primary">Submit</button>
-            </form>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1>Request a Club Form</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <legend>Start a club</legend>
+                    <label htmlFor="title">Title</label>
+                    <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
+                    <button className="black_btn">Submit</button>
+                </form>
             </div>
         );
 
@@ -101,20 +95,12 @@ class Dashboard extends Component {
         };
     };
 
-     adminView() {   
+    adminView() {
         return (
-            <div>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1>Admin Dashboard</h1>
-
-                <h2>Clubs requesting to join</h2>
-                <ul>
-                    {this.props.clubs.filter(club => 
-                        club.title === "Test"
-                    ).map((club, index) => (
-                        <li>{club.title}</li>
-                    ))}
-                    {/* {this.props.clubs} */}
-                </ul>
+                <button onClick={() => window.location.href = '/incomingRequests'} className="blue_btn">Incoming Requests</button>
             </div>
         );
     };
@@ -137,7 +123,11 @@ class Dashboard extends Component {
 };
 
 const mapStateToProps = state => {
-    return { user: state.user, clubs: state.clubs, leaderClub: state.leaderClub };
+    return {
+        user: state.user,
+        clubs: state.clubs,
+        leaderClub: state.leaderClub
+    };
 };
 
 function mapDispatchToProps() {
@@ -149,5 +139,3 @@ function mapDispatchToProps() {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(Dashboard);
-
-// export default Dashboard;
