@@ -1,46 +1,122 @@
 // src/js/actions/index.js
 
-import { ADD_ARTICLE, HANDLE_LOGIN, LOGOUT_USER } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
-    return { type: LOGOUT_USER }
+    return { type: LOGOUT_USER };
 };
 
-export function addArticle(payload) {
-    return { type: ADD_ARTICLE, payload }
-};
-
-// action 
+// LOGIN ACTION 
 export function loginUser(loginState) {
-    return (dispatcher) => {
-        axios.post(`http://4ee12370.ngrok.io/login`, loginState).then((user) => {
-            dispatcher(handleLogin(user.data.token)); // THUNKED IT!
+    return (dispatcher) => { // read more into dispatcher
+        axios.post(`/login`, loginState).then((res) => {
+            dispatcher(handleLogin(res.data.user)); // THUNKED IT!
         }).catch(console.err);
-    }
+    };
+};
 
-}
-// const objCopy = JSON.parse(JSON.stringify(obj))
-export const handleLogin = (token) => {
+// ACTION CREATE handeLogin
+export const handleLogin = (user) => {
     return {
-        type: HANDLE_LOGIN, 
-        payload: token
-    }
-}
+        type: HANDLE_LOGIN,
+        payload: user
+    };
+};
 
-// our new action creator.
-export function getData() {
-    return function(dispatch) {
-        return fetch("https://jsonplaceholder.typicode.com/posts")
-        .then(response => response.json())
-        .then(json => {
-            dispatch({ type: "DATA_LOADED", payload: json }); // and thats' redux-thunk!
-            // return { type: "DATA_LOADED", payload: json };
+// SIGNUP USER ACTION 
+export function signupUser(signupState) {
+    console.log("IN SIGNUP USER ACTION");
+    console.log("signupState:", signupState);
+    return (dispatcher) => {
+        axios.post(`/signup`, signupState).then((res) => {
+            console.log("res.data:", res.data);
+            dispatcher(handleSignup(res.data.user));
+        }).catch(console.err);
+    };
+};
+
+export const handleSignup = (user, token) => {
+    return {
+        type: SIGNUP_USER,
+        user_payload: user,
+        token_payload: token
+    };
+};
+
+// UPDATE SETTINGS ACTION 
+export function updateSettings(userFormState, token) {
+    return (dispatcher) => {
+        axios.put(`/settings`, {userFormState, token}).then((res) => {
+            dispatcher(handleSettings(res.data.user));
+        }).catch(console.err);
+    };
+};
+
+export const handleSettings = (user) => {
+    return {
+        type: HANDLE_SETTINGS,
+        payload: user
+    };
+};
+
+export function requestClub(userData, clubData) {
+    console.log("here");
+    console.log("userData:", userData);    
+    console.log("clubData:", clubData);
+    return (dispatcher) => {
+        console.log("in return");
+        axios.post(`/requestClub`, {userData, clubData}).then(res => {
+            console.log("res:", res.data);
+            dispatcher(handleRequestClub(res.data.user));
+        }).catch(console.err);
+    };
+};
+
+export const handleRequestClub = (user) => {
+    return {
+        type: REQUEST_CLUB,
+        payload: user
+    };
+};
+
+export function viewAllClubs(userData) {
+    return (dispatcher) => {
+        console.log("userDataa:", userData);
+        axios.post(`/getAllClubs`, userData).then((res) => {
+            console.log("res.data.clubs:", res.data.clubs); 
+            dispatcher(handleAllClubs(res.data.clubs));
+        }).catch(err => {
+            console.log("err:", err);
         });
-    }
-}
+    };
+};
 
-// So, the type property is nothing more than a string. The reducer will use that string to determine how to calculate the next state.
+export const handleAllClubs = (clubs) => {
+    console.log("CLUBS:", clubs);
+    return {
+        type: VIEW_ALL_CLUBS,
+        payload: clubs
+    };
+};
 
-// Since strings are prone to typos and duplicates it’s better to have action types declared as constants. 
-// This approach helps avoiding errors that will be difficult to debug.
+export function getClubLeaderClub(clubId, userId) {
+    return (dispatcher) => {
+        console.log("id:", clubId);
+        console.log("userId:", userId);
+        axios.post(`/getClubLeaderClub`, {clubId, userId}).then((res) => {
+            console.log("res.data.clubs:", res.data.club); 
+            dispatcher(handleClubLeaderClub(res.data.club));
+        }).catch(err => {
+            console.log("err:", err);
+        });
+    };
+};
+
+export const handleClubLeaderClub = (club) => {
+    console.log("CLUB:", club);
+    return {
+        type: GET_LEADER_CLUB,
+        payload: club
+    };
+};
