@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from "react-redux";
-// import { Redirect } from 'react-router';
-// import { requestClub, viewAllClubs, getClubLeaderClub } from "../../js/actions/index";
+import { connect } from "react-redux";
+import { viewAllClubs } from "../../js/actions/index";
 import logo from '../../Images/logo-only.png';
 // import avatar from '../../Images/temp-img.png';
 import '../../Styles/dashboard.scss';
@@ -31,4 +30,14 @@ class IncomingRequests extends Component {
     };
 };
 
-export default IncomingRequests;
+const mapStateToProps = state => {
+    return { user: state.user, clubs: state.clubs};
+};
+
+function mapDispatchToProps() {
+    return {
+        viewAllClubs
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(IncomingRequests);
