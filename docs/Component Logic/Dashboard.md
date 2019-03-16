@@ -2,6 +2,9 @@
 
 # Dashboard
 
+*Double check where clubs are being stored in the state. For a member, is it different from a leader? Since a leader has their own clubId and then their own club is stored in*
+
+
 User is taken to the appropriate dashboard view.
 
 - If there is no user, send them to login
@@ -10,12 +13,13 @@ User is taken to the appropriate dashboard view.
 - if the user is a `admin` go to  ## Admin section.
 
 ## Member
-  [ ]  - If the user clubs array is empty, render an empty square that directs theme to the clubs list view
+  ✅  - If the user clubs array is empty, render an empty square that directs theme to the clubs list view
 
 ## Leader
 
 ✅ - if the user has not yet filled the form to request their club (requested: false), render the request form view.
 ✅ - if the user has requested their club (`requested: true`), check if it has been accepted (`accepted: true`), if so, render their leader dashboard, if not, (`accepted: false`)render the waiting for verification view.
+
 
 ### Step 1
 
@@ -30,11 +34,13 @@ requestClub action function
 
 ### Accepted Dashboard View
 
-Club Leader can view their club details and add a basic Event.
+- [ ] Club Leader can view their club details and add a basic Event.
 
-To view their club info (we currently store the User object with the club id in their clubs array).
+✅ To view their club info (we currently store the User object with the club id in their clubs array).
 
-Soo.. this means... on componentDidMount Lifecycle Method, we'll want to check if the user is an accepted leader, then use that club id to call an action function (getClubLeaderClub) to hit a route on the backend that will take that id, find the club and return its object into our state that we can then have the user interact with.
+✅ Soo.. this means... on componentDidMount Lifecycle Method, we'll want to check if the user is an accepted leader, then use that club id to call an action function (getClubLeaderClub) to hit a route on the backend that will take that id, find the club and return its object into our state that we can then have the user interact with.
+
+
 
 
 ## Admin

@@ -32,14 +32,24 @@ class Dashboard extends Component {
     };
     
     cardLink() {
-        if (this.props.user.clubs.length < 1) {
+        if (this.props.clubs.length < 1) {
             return (
                 <div className="card">
                     <p onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
                 </div>
             );
         } else {
-            return null;
+
+            return (
+                <div className="card">
+                
+                    {this.props.clubs.map((club, index) => {
+                            console.log("club:", club);
+                            return <li key={'mykey' + index}>{club.title}</li>
+                        }
+                    )};
+                </div>
+            );
         };
     };
 
@@ -59,7 +69,26 @@ class Dashboard extends Component {
         );
     };
 
-    leaderView(user) {
+    leaderView() {
+        const leaderDashboard = (
+            <div className="dashboard">
+                <div className="top">
+                    <img className="small-img-only" src={logo} alt="Make School" />
+                    <img className="med-logo-only" src={ avatar } alt="Avatar" />
+                </div>
+                <h1 >Welcome, {this.props.user.username}</h1>
+                <section className="club-section user-form">
+                    <p class="h1-primary">{this.props.leaderClub.title}</p>
+                    <button className="black_btn">Add Event</button>
+                    <button className="black_btn">Manage Club</button>
+                </section>
+                <h2>Upcoming Events</h2>
+                <div className="events-cards">
+                    {this.cardLink()}
+                </div>
+            </div>
+        );  
+
         const request = (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
@@ -76,14 +105,6 @@ class Dashboard extends Component {
         const waitingVerification = (
             <h1>Your club is awaiting verification</h1>
         );
-
-        const leaderDashboard = (
-            <div>
-                <h1>Club leader dashboard</h1>
-                <p>{JSON.stringify(this.props.leaderClub.title)}</p>
-            </div>
-        );  
-
         if (!this.props.user.requested || this.props.user.requested === false) {
             return request;
         } else if (this.props.user.requested) {

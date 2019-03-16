@@ -13,11 +13,11 @@ button {
     outline: none;
     transition: all 150ms ease-in;
     font-size: 1.25rem;
-    margin: 0;
     text-align: center;
     text-transform: uppercase;
     min-width: 102px;
     padding: 6px 12px;
+    margin: .5em 0em;
 }
 
 .blue_btn {
@@ -44,7 +44,7 @@ button {
 .h1-primary {
     font-weight: 700;
     font-family: proxima-nova,helvetica neue,Helvetica,Arial,sans-serif;
-    color: #fff;
+    color: $light-white;
     letter-spacing: normal;
     line-height: 1.25;
 
