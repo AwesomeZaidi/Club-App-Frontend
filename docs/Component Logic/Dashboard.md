@@ -2,6 +2,8 @@
 
 # Dashboard
 
+Idea 💡 Maybe I can make a modular Form Component where you can pass in props of what the form needs to fill out and a function name then the Component dynamically renders with those fields and logic...
+
 *Double check where clubs are being stored in the state. For a member, is it different from a leader? Since a leader has their own clubId and then their own club is stored in*
 
 
@@ -34,7 +36,7 @@ requestClub action function
 
 ### Accepted Dashboard View
 
-- [ ] Club Leader can view their club details and add a basic Event.
+- [ ] Club Leader can view their and click add event to go to add page to see create event form.
 
 ✅ To view their club info (we currently store the User object with the club id in their clubs array).
 

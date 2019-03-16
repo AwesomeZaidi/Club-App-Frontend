@@ -7,6 +7,7 @@ import Signup from './Components/Signup/Signup.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import Settings from './Components/Settings/Settings';
 import IncomingRequests from './Components/Admin/IncomingRequests';
+import Add from './Components/Leader/Add.jsx';
 
 // import List from "./List/List";
 // import Form from "./Form/Form";
@@ -23,7 +24,7 @@ class App extends Component {
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/incomingRequests' component={IncomingRequests} />
-
+          <Route exact path='/add' component={Add} />
         </div>
     );
   }

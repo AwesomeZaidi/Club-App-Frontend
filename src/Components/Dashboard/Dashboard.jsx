@@ -79,7 +79,7 @@ class Dashboard extends Component {
                 <h1 >Welcome, {this.props.user.username}</h1>
                 <section className="club-section user-form">
                     <p class="h1-primary">{this.props.leaderClub.title}</p>
-                    <button className="black_btn">Add Event</button>
+                    <button onClick={() => window.location.href = '/add'} className="black_btn">Add Event</button>
                     <button className="black_btn">Manage Club</button>
                 </section>
                 <h2>Upcoming Events</h2>
