@@ -11,9 +11,10 @@ class Dashboard extends Component {
         super(props);
 
         this.state = {
-            title: ''
+            title: '',
+            showIncoming: "false"
         };
-        this.incomingRequests = this.incomingRequests.bind(this);        
+        // this.incomingRequests = this.incomingRequests.bind(this);        
     };
     
     handleChange = event => {
@@ -98,25 +99,41 @@ class Dashboard extends Component {
         };
     };
 
-    incomingRequests() { 
-        return (
-            <div className="user-form">
-                <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1>Incoming Requests</h1>
-
-                <ul>
-                    {this.props.clubs.filter(club => club.accepted === "false")
-                        .map((club, index) => {
-                            console.log(club);
-                            return <li key={'mykey' + index}>{club.title}</li>
-                        }
-                    )}
-                        <button className="blue_btn">Accept</button>
-                        <button className="black_btn">Deny</button>
-                </ul>
-            </div>     
-        );
+    showIncoming = () => {
+        this.setState({ showIncoming : "true" });
     };
+
+    showIncomingRequests() {
+        if (this.showIncoming == "true") {
+            console.log("here");
+            console.log(this.showIncoming);
+            
+            return (
+                <h1> Incoming Requests Here </h1>
+            );
+        };
+        return null;
+    };
+
+    // incomingRequests() {
+    //     return (
+    //         <div className="user-form">
+    //             <img className="med-logo-only" src={logo} alt="Make School"></img>
+    //             <h1>Incoming Requests</h1>
+
+    //             <ul>
+    //                 {this.props.clubs.filter(club => club.accepted == "false")
+    //                     .map((club, index) => {
+    //                         console.log("here");
+    //                         return <li key={'mykey' + index}>{club.title}</li>
+    //                     }
+    //                 )}
+    //                     <button className="blue_btn">Accept</button>
+    //                     <button className="black_btn">Deny</button>
+    //             </ul>
+    //         </div>     
+    //     );
+    // };
 
     adminView() {
         return (
@@ -124,7 +141,13 @@ class Dashboard extends Component {
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1>Admin Dashboard</h1>
 
-                <button onClick={this.incomingRequests} className="blue_btn">Incoming Requests</button>
+                <button onClick={this.showIncoming} className="blue_btn">Incoming Requests</button>
+                {this.showIncomingRequests()}
+                {/* <h2>{this.state.showIncoming}</h2> */}
+                {/* <button onClick={this.setState({ showIncoming : true })} className="blue_btn">Incoming Requests</button> */}
+                
+                
+                {/* <button onClick={this.incomingRequests} className="blue_btn">Incoming Requests</button> */}
                 {/* <button onClick={() => this.allClubs} className="black_btn">All Clubs</button> */}
 
                 {/* <ul>
