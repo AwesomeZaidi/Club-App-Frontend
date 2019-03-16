@@ -99,15 +99,10 @@ class Dashboard extends Component {
         };
     };
 
-    showIncoming = () => {
-        this.setState({ showIncoming : "true" });
-    };
+    showIncoming = () => this.setState({ showIncoming : "true" });
 
     showIncomingRequests() {
-        if (this.showIncoming == "true") {
-            console.log("here");
-            console.log(this.showIncoming);
-            
+        if (this.state.showIncoming == "true") {
             return (
                 <h1> Incoming Requests Here </h1>
             );
@@ -143,7 +138,7 @@ class Dashboard extends Component {
 
                 <button onClick={this.showIncoming} className="blue_btn">Incoming Requests</button>
                 {this.showIncomingRequests()}
-                {/* <h2>{this.state.showIncoming}</h2> */}
+
                 {/* <button onClick={this.setState({ showIncoming : true })} className="blue_btn">Incoming Requests</button> */}
                 
                 
