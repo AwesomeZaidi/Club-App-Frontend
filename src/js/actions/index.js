@@ -60,14 +60,9 @@ export const handleSettings = (user) => {
     };
 };
 
-export function requestClub(userData, clubData) {
-    console.log("here");
-    console.log("userData:", userData);    
-    console.log("clubData:", clubData);
+export function requestClub(clubData) {
     return (dispatcher) => {
-        console.log("in return");
-        axios.post(`/requestClub`, {userData, clubData}).then(res => {
-            console.log("res:", res.data);
+        axios.post(`/requestClub`, {clubData}).then(res => {
             dispatcher(handleRequestClub(res.data.user));
         }).catch(console.err);
     };
@@ -80,11 +75,10 @@ export const handleRequestClub = (user) => {
     };
 };
 
-export function viewAllClubs(userData) {
+// ADMIN: VIEWS ALL CLUBS
+export function viewAllClubs() {
     return (dispatcher) => {
-        console.log("userDataa:", userData);
-        axios.post(`/getAllClubs`, userData).then((res) => {
-            console.log("res.data.clubs:", res.data.clubs); 
+        axios.get(`/getAllClubs`).then((res) => {
             dispatcher(handleAllClubs(res.data.clubs));
         }).catch(err => {
             console.log("err:", err);
@@ -100,12 +94,11 @@ export const handleAllClubs = (clubs) => {
     };
 };
 
-export function getClubLeaderClub(clubId, userId) {
+// LEADER: GET THE LEADERS CLUB OBJECT
+export function getClubLeaderClub() {
     return (dispatcher) => {
-        console.log("id:", clubId);
-        console.log("userId:", userId);
-        axios.post(`/getClubLeaderClub`, {clubId, userId}).then((res) => {
-            console.log("res.data.clubs:", res.data.club); 
+        axios.post(`/getClubLeaderClub`).then((res) => {
+            console.log("res.data.club:", res.data.club); 
             dispatcher(handleClubLeaderClub(res.data.club));
         }).catch(err => {
             console.log("err:", err);

@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.requestClub(this.props.user, this.state);
+        this.props.requestClub(this.state);
     };
 
     componentWillMount() {
@@ -27,7 +27,7 @@ class Dashboard extends Component {
             this.props.viewAllClubs(this.props.user);
         };
         if (this.props.user.type === `leader` && this.props.user.accepted) {
-            this.props.getClubLeaderClub(this.props.user.clubs[0], this.props.user._id);
+            this.props.getClubLeaderClub();
         };
     };
     
