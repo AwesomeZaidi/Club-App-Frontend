@@ -8,6 +8,8 @@ import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import Settings from './Components/Settings/Settings';
 import IncomingRequests from './Components/Admin/IncomingRequests';
 import Add from './Components/Leader/Add.jsx';
+import Clubs from './Components/Clubs/Clubs.jsx';
+
 
 // import List from "./List/List";
 // import Form from "./Form/Form";
@@ -25,6 +27,8 @@ class App extends Component {
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/incomingRequests' component={IncomingRequests} />
           <Route exact path='/add' component={Add} />
+          <Route exact path='/clubs' component={Clubs} />
+
         </div>
     );
   }
