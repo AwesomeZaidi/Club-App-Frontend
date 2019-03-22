@@ -51,7 +51,7 @@ button {
 
     position: relative;
     z-index: 2;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     margin: 0;
 }
 
@@ -79,6 +79,10 @@ button {
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
+.small-logo-only {
+    max-width: 20vw;
+}
+
 .med-logo-only {
     max-width: 24vw;
 }
@@ -89,6 +93,10 @@ button {
 
 .flexbox, %flexbox {
     display: flex;
+}
+
+.flex-direction-column, %flex-direction-column {
+    flex-direction: column;
 }
 
 .justify-content-center, %justify-content-center {
@@ -103,17 +111,30 @@ button {
     text-align: center
 }
 
-.logo-title-align, %logo-title-align {
+.logo-title-align {
+
     display: flex;
     align-items: center;
 }
 
-.top-down-center-section {
+.logo-title-align > *{
+    margin: 0em .5em;
+}
+
+.top-down-center {
     @extend %flexbox;
     @extend %justify-content-center;
     @extend %text-align-center;
     @extend %align-items-center;
+    @extend %flex-direction-column;
+}
 
+.list-item {
+    font-size: 1.45em;
+}
+
+.push-down {
+    margin-top: 1.6em;
 }
 
 .user-form {
