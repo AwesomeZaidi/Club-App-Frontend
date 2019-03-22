@@ -32,7 +32,7 @@ class Dashboard extends Component {
     };
     
     cardLink() {
-        if (this.props.clubs.length < 1) {
+        if (this.props.all_clubs.length < 1) {
             return (
                 <div className="card">
                     <p className='text_sm' onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
@@ -42,9 +42,7 @@ class Dashboard extends Component {
 
             return (
                 <div className="card">
-                
-                    {this.props.clubs.map((club, index) => {
-                            console.log("club:", club);
+                    {this.props.all_clubs.map((club, index) => {
                             return <li key={'mykey' + index}>{club.title}</li>
                         }
                     )};
@@ -100,7 +98,7 @@ class Dashboard extends Component {
                     <legend>Start a club</legend>
                     <label htmlFor="title">Title</label>
                     <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
-                    <button className="black_btn">Submit</button>
+                    <button className="blue_btn">Submit</button>
                 </form>
             </div>
         );
@@ -149,7 +147,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        clubs: state.clubs,
+        all_clubs: state.all_clubs,
         leaderClub: state.leaderClub
     };
 };

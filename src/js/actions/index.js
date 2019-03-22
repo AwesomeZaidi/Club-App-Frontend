@@ -13,7 +13,7 @@ export function loginUser(loginState) {
         axios.post(`/login`, loginState).then((res) => {
             dispatcher(handleLogin(res.data.user)); // THUNKED IT!
         }).catch((err) => {
-            dispatcher(handleError(true)); // THUNKED IT!
+            dispatcher(handleError(true));
         });
     };
 };  
@@ -92,11 +92,10 @@ export function viewAllClubs() {
     };
 };
 
-export const handleAllClubs = (clubs) => {
-    console.log("CLUBS:", clubs);
+export const handleAllClubs = (all_clubs) => {
     return {
         type: VIEW_ALL_CLUBS,
-        payload: clubs
+        payload: all_clubs
     };
 };
 

@@ -75,7 +75,7 @@ class Signup extends Component {
                     e.memberType = 'leader'
                     this.handleTypeChange(e)
                 }}>Want to start a club?</p>
-                <p onClick={() => window.location.href = '/signup'} class='text_sm'>Already have an account?</p>
+                <p onClick={() => window.location.href = '/login'} class='text_sm'>Already have an account?</p>
             </div>
         );
     };
