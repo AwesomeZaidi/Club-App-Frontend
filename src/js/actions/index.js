@@ -1,6 +1,6 @@
 // src/js/actions/index.js
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB, HANDLE_ERROR } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
@@ -12,7 +12,21 @@ export function loginUser(loginState) {
     return (dispatcher) => { // read more into dispatcher
         axios.post(`/login`, loginState).then((res) => {
             dispatcher(handleLogin(res.data.user)); // THUNKED IT!
-        }).catch(console.err);
+        }).catch((err) => {
+            console.log("err:", err);
+            
+            console.log("in the catchhh boiiii");
+            
+            dispatcher(handleError(true)); // THUNKED IT!
+        });
+    };
+};  
+
+// ACTION HANDLE Error
+export const handleError = (error) => {
+    return {
+        type: HANDLE_ERROR,
+        payload: error
     };
 };
 
@@ -80,9 +94,7 @@ export function viewAllClubs() {
     return (dispatcher) => {
         axios.get(`/getAllClubs`).then((res) => {
             dispatcher(handleAllClubs(res.data.clubs));
-        }).catch(err => {
-            console.log("err:", err);
-        });
+        }).catch(console.err);
     };
 };
 
@@ -98,16 +110,12 @@ export const handleAllClubs = (clubs) => {
 export function getClubLeaderClub() {
     return (dispatcher) => {
         axios.post(`/getClubLeaderClub`).then((res) => {
-            console.log("res.data.club:", res.data.club); 
             dispatcher(handleClubLeaderClub(res.data.club));
-        }).catch(err => {
-            console.log("err:", err);
-        });
+        }).catch(console.err);
     };
 };
 
 export const handleClubLeaderClub = (club) => {
-    console.log("CLUB:", club);
     return {
         type: GET_LEADER_CLUB,
         payload: club

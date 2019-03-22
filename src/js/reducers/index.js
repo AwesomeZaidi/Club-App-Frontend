@@ -1,11 +1,12 @@
 // src/js/reducers/index.js
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB, HANDLE_ERROR } from "../constants/action-types";
 
 const initialState = {
   user: "", // current user object with all of their info, list of club id's and list of event id's (coming soon.)
   clubs: [], // what is this?
-  leaderClub: ""
+  leaderClub: "",
+  error: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -24,6 +25,8 @@ function rootReducer(state = initialState, action) {
       return {...state, clubs: action.payload}
     case GET_LEADER_CLUB:
       return {...state, leaderClub: action.payload}
+      case HANDLE_ERROR:
+      return {...state, error: action.payload}
     default: 
         return state;
   }

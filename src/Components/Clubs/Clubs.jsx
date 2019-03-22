@@ -24,4 +24,8 @@ class Clubs extends Component {
     };
 };
 
+const mapStateToProps = e => {    
+    
+}
+
 export default Clubs;
