@@ -14,6 +14,9 @@
         height: 30vh;
         background-color: $primary-blue;
         color: $light-white;
+        button {
+            margin-bottom: 1em;
+        }
     }
     .top {
         display: flex;

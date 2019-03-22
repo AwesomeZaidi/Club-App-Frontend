@@ -27,7 +27,7 @@ class Dashboard extends Component {
             this.props.viewAllClubs(this.props.user);
         };
         if (this.props.user.type === `leader` && this.props.user.accepted) {
-            this.props.getClubLeaderClub();
+            this.props.getClubLeaderClub(this.props.user);
         };
     };
     
@@ -84,9 +84,11 @@ class Dashboard extends Component {
                     <button onClick={() => window.location.href = '/add'} className="black_btn">Add Event</button>
                     <button className="black_btn">Manage Club</button>
                 </section>
-                <h2>Upcoming Events</h2>
-                <div className="events-cards">
-                    {this.cardLink()}
+                <div class='push-down-med full-width top-down-left'>
+                <h2 class='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
+                    <div className="events-cards float-left">
+                        {this.cardLink()}
+                    </div>
                 </div>
             </div>
         );  
