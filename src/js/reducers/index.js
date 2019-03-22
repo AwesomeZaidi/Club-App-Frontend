@@ -4,7 +4,7 @@ import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, 
 
 const initialState = {
   user: "", // current user object with all of their info, list of club id's and list of event id's (coming soon.)
-  clubs: [], // what is this?
+  all_clubs: [], // what is this?
   leaderClub: "",
   error: false
 };
@@ -16,13 +16,13 @@ function rootReducer(state = initialState, action) {
     case SIGNUP_USER:
       return {...state, user: action.payload, error: action.payload_error}
     case LOGOUT_USER:
-      return {...state, user: "", clubs: []}
+      return {...state, user: "", all_clubs: []}
     case HANDLE_SETTINGS:
       return {...state, user: action.payload}
     case REQUEST_CLUB:
       return {...state, user: action.payload}
     case VIEW_ALL_CLUBS:
-      return {...state, clubs: action.payload}
+      return {...state, all_clubs: action.payload}
     case GET_LEADER_CLUB:
       return {...state, leaderClub: action.payload}
       case HANDLE_ERROR:

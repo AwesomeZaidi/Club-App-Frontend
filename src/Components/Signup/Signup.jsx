@@ -37,23 +37,24 @@ class Signup extends Component {
     };
 
     LeaderView() {
-        // this.state.member = 'member';
         return (
-            <div>
-                {/* opportunity to use OOCSS with these forms */}
-                <h1>LEADER VIEW Signup</h1>
+            <div className="user-form">
+                <img className="med-logo-only" src={logo} alt="Make School"></img>
+                <h1 class='h1-primary'>Leader Signup</h1>
                 <form className='user-form signup-form' onSubmit={this.handleSubmit}>
                     <label htmlFor='username'>Username</label>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
                     <label htmlFor='password'>Password</label>                    
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Signup</button>
+                    <p
+                        class='text_sm'
+                        id='whoIsSigningUp'
+                        onClick={(e) => {
+                            e.memberType = 'member'
+                            this.handleTypeChange(e)
+                        }}>Not a club leader? Click here to sign up as a member.</p>
                 </form>
-
-                <p id='whoIsSigningUp' onClick={(e) => {
-                    e.memberType = 'member'
-                    this.handleTypeChange(e)
-                }}>Not a club leader? Click here to sign up as a member.</p>
             </div>
         );
     };
@@ -74,7 +75,7 @@ class Signup extends Component {
                     e.memberType = 'leader'
                     this.handleTypeChange(e)
                 }}>Want to start a club?</p>
-                <p class='text_sm'>Already have an account?</p>
+                <p onClick={() => window.location.href = '/signup'} class='text_sm'>Already have an account?</p>
             </div>
         );
     };
