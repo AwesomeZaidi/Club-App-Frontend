@@ -12,9 +12,9 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch(action.type) {
     case HANDLE_LOGIN:
-      return {...state, user: action.payload}
+      return {...state, user: action.payload, error: action.payload_error}
     case SIGNUP_USER:
-      return {...state, user: action.payload}
+      return {...state, user: action.payload, error: action.payload_error}
     case LOGOUT_USER:
       return {...state, user: "", clubs: []}
     case HANDLE_SETTINGS:

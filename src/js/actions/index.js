@@ -13,10 +13,6 @@ export function loginUser(loginState) {
         axios.post(`/login`, loginState).then((res) => {
             dispatcher(handleLogin(res.data.user)); // THUNKED IT!
         }).catch((err) => {
-            console.log("err:", err);
-            
-            console.log("in the catchhh boiiii");
-            
             dispatcher(handleError(true)); // THUNKED IT!
         });
     };
@@ -34,7 +30,8 @@ export const handleError = (error) => {
 export const handleLogin = (user) => {
     return {
         type: HANDLE_LOGIN,
-        payload: user
+        payload: user,
+        payload_error: false
     };
 };
 
@@ -51,6 +48,7 @@ export const handleSignup = (user) => {
     return {
         type: SIGNUP_USER,
         payload: user,
+        payload_error: false
     };
 };
 
