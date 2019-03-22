@@ -3,9 +3,8 @@
 import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB } from "../constants/action-types";
 
 const initialState = {
-  token: "",
-  user: "",
-  clubs: [],
+  user: "", // current user object with all of their info, list of club id's and list of event id's (coming soon.)
+  clubs: [], // what is this?
   leaderClub: ""
 };
 
@@ -16,7 +15,7 @@ function rootReducer(state = initialState, action) {
     case SIGNUP_USER:
       return {...state, token: action.token_payload, user: action.user_payload}
     case LOGOUT_USER:
-      return {...state, user: "", token: "", clubs: []}
+      return {...state, user: "", clubs: []}
     case HANDLE_SETTINGS:
       return {...state, user: action.payload}
     case REQUEST_CLUB:
