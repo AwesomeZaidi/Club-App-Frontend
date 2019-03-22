@@ -46,15 +46,15 @@ class Login extends Component {
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1>Login</h1>
+                <h1 class='h1-primary'>Login</h1>
                 {this.handleError()}
                 <form onSubmit={this.handleSubmit}>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />                  
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className="blue_btn" type='submit' disabled={!this.validateForm()} >Submit</button> 
                 </form>
-                <p onClick={() => window.location.href = '/signup'}>Don’t have an account?</p>
-                <p>Forgot Password?</p>
+                <p class='text_sm' onClick={() => window.location.href = '/signup'}>Don’t have an account?</p>
+                <p class='text_sm'>Forgot Password?</p>
             </div>
         );
     };

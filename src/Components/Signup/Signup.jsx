@@ -62,18 +62,19 @@ class Signup extends Component {
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1>Signup</h1>
+                <h1 class='h1-primary'>Signup</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor='username'>Username</label>
+                    {/* <label htmlFor='username'>Username</label> */}
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor='password'>Password</label>
+                    {/* <label htmlFor='password'>Password</label> */}
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Submit</button>
                 </form>
-                <p id='whoIsSigningUp' onClick={(e) => { 
+                <p class='text_sm' id='whoIsSigningUp' onClick={(e) => { 
                     e.memberType = 'leader'
                     this.handleTypeChange(e)
-                }}>Want to start a club? Sign up to be a Club Leader.</p>
+                }}>Want to start a club?</p>
+                <p class='text_sm'>Already have an account?</p>
             </div>
         );
     };

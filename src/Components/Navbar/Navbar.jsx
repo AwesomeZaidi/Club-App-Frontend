@@ -18,7 +18,7 @@ class Navbar extends Component {
   render() {
     return (
       <div className="header btn-shadow">
-        <img href="#default" className="header-logo" src={logo} alt="Logo" srcSet="" />
+        <img onClick={() => window.location.href = '/'}href="#default" className="header-logo" src={logo} alt="Logo" srcSet="" />
         <div className="header-right">
         {this.showLogout()}
         {/* <Link to='/' className="active" >APPLY</Link> */}
