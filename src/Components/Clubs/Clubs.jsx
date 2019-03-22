@@ -6,7 +6,13 @@ import logo from '../../Images/logo-only.png';
 // import '../../Styles/dashboard.scss';
 
 class Clubs extends Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            clubClicked: null
+        }
+    }
     componentWillMount() {
         if (this.props.user) {
             return this.props.viewAllClubs(this.props.user);
@@ -14,29 +20,17 @@ class Clubs extends Component {
         return null; // maybe redirect user even...        
     };
 
-
-    allClubsList() {
-        return (
-            <ul className='top-down-center'>
-                {this.props.all_clubs.map(
-                    (club, index) => {
-                        return <span onClick={() => {this.loadClubCard(index)}} class='push-down list-item' key={'mykey' + index}>{club.title}</span>
-                    }
-                )}
-            </ul>
-        );
-    };
-
-    loadClubCard(index) {
-        console.log("here");
-        console.log("index:", index);
-        return (
-            <div class='card'>
-                <p>{index}</p>
-                <p>{this.props.all_clubs[{index}]}</p>
-            </div>  
-        );
-    };
+    // loadClubCard(index) {
+    //     console.log("here");
+    //     console.log("index:", index);
+    //     this.setState({clubClicked: true})
+    //     return (
+    //         <div class='card'>
+    //             <p>{index}</p>
+    //             <p>{this.props.all_clubs[{index}]}</p>
+    //         </div>  
+    //     );
+    // };
 
     render() {
         console.log("this.props.all_clubs:", this.props.all_clubs);
@@ -46,7 +40,19 @@ class Clubs extends Component {
                     <img className="small-logo-only" src={logo} alt="Make School"></img>
                     <h1 className='h1-primary'>All Clubs</h1>
                 </div>
-                {this.allClubsList()}
+                <ul className='top-down-center'>
+                {this.props.all_clubs.map(
+                    (club, index) => (
+                        <div>
+                            <span onClick={() => {this.setState({clubClicked: index})}} class='push-down list-item' key={'mykey' + index}>{club.title}</span>
+                            {this.state.clubClicked && (
+                                <div>Club here</div>
+                            )}
+                        </div>
+                    )
+                )}
+
+            </ul>
             </section>
         );
     };
