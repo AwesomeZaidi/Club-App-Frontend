@@ -35,7 +35,7 @@ class Dashboard extends Component {
         if (this.props.clubs.length < 1) {
             return (
                 <div className="card">
-                    <p onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
+                    <p className='text_sm' onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
                 </div>
             );
         } else {
@@ -61,9 +61,12 @@ class Dashboard extends Component {
                     <img className="med-logo-only" src={ avatar } alt="Avatar" />
                 </div>
                 <h1>Welcome, {this.props.user.username}</h1>
-                <h2>Upcoming Events</h2>
-                <div className="events-cards">
-                    {this.cardLink()}
+
+                <div class='push-down-med full-width top-down-left'>
+                <h2 class='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
+                    <div className="events-cards float-left">
+                        {this.cardLink()}
+                    </div>
                 </div>
             </div>
         );

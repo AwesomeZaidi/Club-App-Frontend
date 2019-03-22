@@ -30,7 +30,7 @@ class Login extends Component {
     handleError = e => {
         if (this.props.error) {
             return (
-                <div class='error-box'>
+                <div className='error-box'>
                     <p>Wrong username or password</p>
                 </div>
             );

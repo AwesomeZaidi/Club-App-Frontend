@@ -40,21 +40,17 @@ export const handleLogin = (user) => {
 
 // SIGNUP USER ACTION 
 export function signupUser(signupState) {
-    console.log("IN SIGNUP USER ACTION");
-    console.log("signupState:", signupState);
     return (dispatcher) => {
         axios.post(`/signup`, signupState).then((res) => {
-            console.log("res.data:", res.data);
             dispatcher(handleSignup(res.data.user));
         }).catch(console.err);
     };
 };
 
-export const handleSignup = (user, token) => {
+export const handleSignup = (user) => {
     return {
         type: SIGNUP_USER,
-        user_payload: user,
-        token_payload: token
+        payload: user,
     };
 };
 
