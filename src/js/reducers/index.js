@@ -4,7 +4,8 @@ import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, 
 
 const initialState = {
   user: "", // current user object with all of their info, list of club id's and list of event id's (coming soon.)
-  all_clubs: [], // what is this?
+  all_clubs: [],
+  users_clubs: [],
   leaderClub: "",
   error: false
 };

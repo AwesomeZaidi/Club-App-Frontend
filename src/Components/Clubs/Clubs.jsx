@@ -20,10 +20,21 @@ class Clubs extends Component {
             <ul className='top-down-center'>
                 {this.props.all_clubs.map(
                     (club, index) => {
-                        return <span class='push-down list-item' key={'mykey' + index}>{club.title}</span>
+                        return <span onClick={() => {this.loadClubCard(index)}} class='push-down list-item' key={'mykey' + index}>{club.title}</span>
                     }
                 )}
             </ul>
+        );
+    };
+
+    loadClubCard(index) {
+        console.log("here");
+        console.log("index:", index);
+        return (
+            <div class='card'>
+                <p>{index}</p>
+                <p>{this.props.all_clubs[{index}]}</p>
+            </div>  
         );
     };
 

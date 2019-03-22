@@ -32,7 +32,7 @@ class Dashboard extends Component {
     };
     
     cardLink() {
-        if (this.props.all_clubs.length < 1) {
+        if (this.props.user.clubs.length < 1) {
             return (
                 <div className="card">
                     <p className='text_sm' onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
@@ -42,7 +42,8 @@ class Dashboard extends Component {
 
             return (
                 <div className="card">
-                    {this.props.all_clubs.map((club, index) => {
+                    {this.props.all_clubs.map(
+                        (club, index) => {
                             return <li key={'mykey' + index}>{club.title}</li>
                         }
                     )};
