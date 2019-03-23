@@ -17,7 +17,7 @@ function rootReducer(state = initialState, action) {
     case SIGNUP_USER:
       return {...state, user: action.payload, error: action.payload_error}
     case LOGOUT_USER:
-      return {...state, user: "", all_clubs: [], error: false}
+      return {...state, user: "", all_clubs: [], leaderClub: "", error: false}
     case HANDLE_SETTINGS:
       return {...state, user: action.payload}
     case REQUEST_CLUB:
