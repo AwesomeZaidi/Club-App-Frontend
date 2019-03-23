@@ -11,7 +11,8 @@ class CreateEvent extends Component {
         super(props);
 
         this.state = {
-            title: ''
+            title: '',
+            eventCreated: false
         };
     };
 
@@ -25,25 +26,28 @@ class CreateEvent extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const eventData = this.state;
-        await axios.post(`/event`, eventData).then((res) => {
-            console.log("res.data.event:", res.data.event);
-            const id = res.data.event._id;
-            console.log("id:", id);
-            return <Redirect to={`/event/${id}`}/>
-        }).catch(console.err);
+        const eventData = this.state.title;
+        await axios.post(`/event`, eventData);
+        this.setState({
+            eventCreated: eventData._id
+        });
     };
 
     render() {
+        console.log("this.state:", this.state.eventCreated); // works
+        
+        if (this.state.eventCreated != false) {
+            return <Redirect to={`/event/${eventCreated}`} />
+        };
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1>Add Event</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <input type='text' name='title' id='title' placeholder='Title' value={this.state.title} onChange={this.handleChange} />                  
-                    <button className="black_btn" type='submit' disabled={!this.validateForm()} >Submit</button>                     
+                    <input type='text' name='title' id='title' placeholder='Title' value={this.state.title} onChange={this.handleChange} />                
+                    <button className="black_btn" type='submit' disabled={!this.validateForm()} >Submit</button>          
                 </form>
-            </div>     
+            </div>
         );
     };
 };
