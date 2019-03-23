@@ -27,17 +27,16 @@ class CreateEvent extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const eventData = this.state.title;
-        await axios.post(`/event`, eventData);
-        this.setState({
-            eventCreated: eventData._id
+        await axios.post(`/event`, eventData).then((res) => {
+            this.setState({
+                eventCreated: res.data.event._id
+            });
         });
     };
 
     render() {
-        console.log("this.state:", this.state.eventCreated); // works
-        
-        if (this.state.eventCreated != false) {
-            return <Redirect to={`/event/${eventCreated}`} />
+        if (this.state.eventCreated) {
+            return <Redirect to={`/event/${this.state.eventCreated}`} />
         };
         return (
             <div className="user-form">
