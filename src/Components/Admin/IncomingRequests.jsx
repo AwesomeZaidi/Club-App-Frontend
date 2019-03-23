@@ -6,9 +6,6 @@ import logo from '../../Images/logo-only.png';
 import '../../Styles/dashboard.scss';
 
 class IncomingRequests extends Component {
-    constructor(props) {
-        super(props);
-    };
     render() {
         return (
             <div className="user-form">
@@ -16,7 +13,7 @@ class IncomingRequests extends Component {
                 <h1>Incoming Requests</h1>
     
                 <ul>
-                    {this.props.clubs.filter(club => club.accepted == "false")
+                    {this.props.clubs.filter(club => club.accepted === "false")
                         .map((club, index) => {
                             console.log("here");
                             return <li key={'mykey' + index}>{club.title}</li>
