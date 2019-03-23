@@ -61,8 +61,8 @@ class Dashboard extends Component {
                 </div>
                 <h1>Welcome, {this.props.user.username}</h1>
 
-                <div class='push-down-med full-width top-down-left'>
-                <h2 class='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
+                <div className='push-down-med full-width top-down-left'>
+                <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
                     <div className="events-cards float-left">
                         {this.cardLink()}
                     </div>
@@ -80,12 +80,12 @@ class Dashboard extends Component {
                 </div>
                 <h1 >Welcome, {this.props.user.username}</h1>
                 <section className="club-section user-form">
-                    <p class="h1-primary">{this.props.leaderClub.title}</p>
-                    <button onClick={() => window.location.href = '/add'} className="black_btn">Add Event</button>
+                    <p className="h1-primary">{this.props.leaderClub.title}</p>
+                    <button onClick={() => window.location.href = '/createevent'} className="black_btn">Create Event</button>
                     <button className="black_btn">Manage Club</button>
                 </section>
-                <div class='push-down-med full-width top-down-left'>
-                <h2 class='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
+                <div className='push-down-med full-width top-down-left'>
+                    <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
                     <div className="events-cards float-left">
                         {this.cardLink()}
                     </div>
