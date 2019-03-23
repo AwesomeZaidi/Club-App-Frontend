@@ -11,8 +11,6 @@ import CreateEvent from './Components/Leader/CreateEvent.js';
 import Clubs from './Components/Clubs/Clubs.jsx';
 import Event from './Components/Event/Event';
 
-
-
 // import List from "./List/List";
 // import Form from "./Form/Form";
 // import Post from "./Posts/Posts";
