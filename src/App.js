@@ -7,8 +7,10 @@ import Signup from './Components/Signup/Signup.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import Settings from './Components/Settings/Settings';
 import IncomingRequests from './Components/Admin/IncomingRequests';
-import Add from './Components/Leader/Add.jsx';
+import CreateEvent from './Components/Leader/CreateEvent.js';
 import Clubs from './Components/Clubs/Clubs.jsx';
+import Event from './Components/Event/Event';
+
 
 
 // import List from "./List/List";
@@ -26,9 +28,9 @@ class App extends Component {
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/incomingRequests' component={IncomingRequests} />
-          <Route exact path='/add' component={Add} />
+          <Route exact path='/createevent' component={CreateEvent} />
           <Route exact path='/clubs' component={Clubs} />
-
+          <Route exact path='/event/:id' component={Event} />
         </div>
     );
   }
