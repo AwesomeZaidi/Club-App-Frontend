@@ -101,8 +101,6 @@ export const handleAllClubs = (all_clubs) => {
 
 // LEADER: GET THE LEADERS CLUB OBJECT
 export function getClubLeaderClub() {
-    console.log("in get club leader");
-    
     return (dispatcher) => {
         axios.get(`/getClubLeaderClub`).then((res) => {
             dispatcher(handleClubLeaderClub(res.data.club));

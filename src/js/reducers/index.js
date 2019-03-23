@@ -26,7 +26,7 @@ function rootReducer(state = initialState, action) {
       return {...state, all_clubs: action.payload}
     case GET_LEADER_CLUB:
       return {...state, leaderClub: action.payload}
-      case HANDLE_ERROR:
+    case HANDLE_ERROR:
       return {...state, error: action.payload}
     default: 
         return state;
