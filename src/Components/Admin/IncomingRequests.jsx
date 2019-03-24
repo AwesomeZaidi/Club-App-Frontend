@@ -8,10 +8,6 @@ import '../../Styles/dashboard.scss';
 class IncomingRequests extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            acceptedAClub: false
-        }
     }
 
     componentWillMount() {
@@ -21,33 +17,27 @@ class IncomingRequests extends Component {
         return null;
     };
 
-    handleAccept(clubId) {
+    async handleAccept(clubId) {
         console.log("hereeee");
-        axios.post('/acceptClub', clubId).then(() => {
-            return this.setState({
-                acceptedAClub: true
-            });
-        });
+        await axios.post('/acceptClub', {clubId});
+        await this.props.getAllClubsRequestingToJoin();
     };
 
     render() {
-        console.log("here");
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1>Incoming Requests</h1>
                 <ul>
-                    {this.props.all_clubs
-                        .map((club, index) => {
-                            return (
-                                <div>
-                                    <li key={'mykey' + index}>{club.title}</li>
-                                    <button onClick={this.handleAccept(club._id)} className="blue_btn">Accept</button>
-                                    <button className="black_btn">Deny</button>
-                                </div>
-                            )
-                        }
-                    )}
+                    {this.props.all_clubs.map((club, index) => {
+                        return (
+                            <div>
+                                <li key={'mykey' + index}>{club.title}</li>
+                                <button onClick={() => this.handleAccept(club._id)} className="blue_btn">Accept</button>
+                                <button className="black_btn">Deny</button>
+                            </div>
+                        )
+                    })}
                 </ul>
             </div>     
         );
