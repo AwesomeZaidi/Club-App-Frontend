@@ -17,8 +17,8 @@ class Clubs extends Component {
         return this.props.viewAllClubs();        
     };
 
-    loadClubCard(club) {
-        return this.setState({clubClicked: club._id})
+    loadClubCard(clubId) {
+        return this.setState({clubClicked: clubId})
     };
 
     render() {
@@ -33,7 +33,7 @@ class Clubs extends Component {
                 {this.props.all_clubs.map(
                     (club, index) => (
                         <div>
-                            <span onClick={() => this.loadClubCard(club)} className='push-down list-item' key={`mykey${index}`} id={`mykey${index}`}>{club.title}</span>
+                            <span onClick={this.state.clubClicked != null ? () => this.loadClubCard(null) : () => this.loadClubCard(club._id)} className='push-down list-item' key={`mykey${index}`} id={`mykey${index}`}>{club.title}</span>
                             {this.state.clubClicked == club._id && (
                                 <div class='club-card'>
                                     <p>{!club.attendees ? 0 : club.attendees.length} Members</p>
