@@ -9,6 +9,10 @@ class Signup extends Component {
         super(props);
 
         this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            number: '',
             username: '',
             password: '',
             whoIsSigningUp: 'member'
@@ -16,7 +20,7 @@ class Signup extends Component {
     };
   
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 0;
+        return this.state.username.length > 0 && this.state.password.length > 0 && this.state.firstName.length > 0 && this.state.lastName.length > 0 && this.state.email.length > 0;
     };
     
 
@@ -40,7 +44,7 @@ class Signup extends Component {
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1 class='h1-primary'>Leader Signup</h1>
+                <h1 className='h1-primary'>Leader Signup</h1>
                 <form className='user-form signup-form' onSubmit={this.handleSubmit}>
                     <label htmlFor='username'>Username</label>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
@@ -48,7 +52,7 @@ class Signup extends Component {
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Signup</button>
                     <p
-                        class='text_sm'
+                        className='text_sm'
                         id='whoIsSigningUp'
                         onClick={(e) => {
                             e.memberType = 'member'
@@ -63,19 +67,21 @@ class Signup extends Component {
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1 class='h1-primary'>Signup</h1>
+                <h1 className='h1-primary'>Signup</h1>
                 <form onSubmit={this.handleSubmit}>
-                    {/* <label htmlFor='username'>Username</label> */}
+                    <input type='text' name='firstName' id='firstName' placeholder='Firt Name' value={this.state.firstName} onChange={this.handleChange} />
+                    <input type='text' name='lastName' id='lastName' placeholder='Last Name' value={this.state.lastName} onChange={this.handleChange} />
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
-                    {/* <label htmlFor='password'>Password</label> */}
+                    <input type='text' name='number' id='number' placeholder='Phone Number' value={this.state.number} onChange={this.handleChange} />
+                    <input type='text' name='email' id='email' placeholder='Make School Email' value={this.state.email} onChange={this.handleChange} />
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Submit</button>
                 </form>
-                <p class='text_sm' id='whoIsSigningUp' onClick={(e) => { 
+                <p className='text_sm' id='whoIsSigningUp' onClick={(e) => { 
                     e.memberType = 'leader'
                     this.handleTypeChange(e)
                 }}>Want to start a club?</p>
-                <p onClick={() => window.location.href = '/login'} class='text_sm'>Already have an account?</p>
+                <p onClick={() => window.location.href = '/login'} className='text_sm'>Already have an account?</p>
             </div>
         );
     };
