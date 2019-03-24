@@ -14,10 +14,7 @@ class Clubs extends Component {
         }
     }
     componentWillMount() {
-        if (this.props.user) {
-            return this.props.viewAllClubs(this.props.user);
-        };
-        return null; // maybe redirect user even...        
+        return this.props.viewAllClubs();        
     };
 
     // loadClubCard(index) {
@@ -25,7 +22,7 @@ class Clubs extends Component {
     //     console.log("index:", index);
     //     this.setState({clubClicked: true})
     //     return (
-    //         <div class='card'>
+    //         <div className='card'>
     //             <p>{index}</p>
     //             <p>{this.props.all_clubs[{index}]}</p>
     //         </div>  
@@ -44,9 +41,9 @@ class Clubs extends Component {
                 {this.props.all_clubs.map(
                     (club, index) => (
                         <div>
-                            <span onClick={() => {this.setState({clubClicked: index})}} class='push-down list-item' key={'mykey' + index}>{club.title}</span>
+                            <span onClick={() => {this.setState({clubClicked: index})}} className='push-down list-item' key={'mykey' + index}>{club.title}</span>
                             {this.state.clubClicked && (
-                                <div>Club here</div>
+                                <div><p>asda</p>Club here</div>
                             )}
                         </div>
                     )

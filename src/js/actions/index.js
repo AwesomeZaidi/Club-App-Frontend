@@ -83,7 +83,16 @@ export const handleRequestClub = (user) => {
     };
 };
 
-// ADMIN: VIEWS ALL CLUBS
+// ADMIN: VIEWS ALL CLUBS REQUESTING TO JOIN
+export function getAllClubsRequestingToJoin() {
+    return (dispatcher) => {
+        axios.get(`/getAllClubsRequestingToJoin`).then((res) => {
+            dispatcher(handleAllClubs(res.data.clubs));
+        }).catch(console.err);
+    };
+};
+
+// for anyone: VIEWS ALL CLUBS
 export function viewAllClubs() {
     return (dispatcher) => {
         axios.get(`/getAllClubs`).then((res) => {
