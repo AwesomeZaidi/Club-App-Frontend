@@ -17,17 +17,9 @@ class Clubs extends Component {
         return this.props.viewAllClubs();        
     };
 
-    // loadClubCard(index) {
-    //     console.log("here");
-    //     console.log("index:", index);
-    //     this.setState({clubClicked: true})
-    //     return (
-    //         <div className='card'>
-    //             <p>{index}</p>
-    //             <p>{this.props.all_clubs[{index}]}</p>
-    //         </div>  
-    //     );
-    // };
+    loadClubCard(club) {
+        return this.setState({clubClicked: club._id})
+    };
 
     render() {
         console.log("this.props.all_clubs:", this.props.all_clubs);
@@ -41,9 +33,13 @@ class Clubs extends Component {
                 {this.props.all_clubs.map(
                     (club, index) => (
                         <div>
-                            <span onClick={() => {this.setState({clubClicked: index})}} className='push-down list-item' key={'mykey' + index}>{club.title}</span>
-                            {this.state.clubClicked && (
-                                <div><p>asda</p>Club here</div>
+                            <span onClick={() => this.loadClubCard(club)} className='push-down list-item' key={`mykey${index}`} id={`mykey${index}`}>{club.title}</span>
+                            {this.state.clubClicked == club._id && (
+                                <div class='club-card'>
+                                    <p>{!club.attendees ? 0 : club.attendees.length} Members</p>
+                                    <button >Join</button>
+                                    <p onClick={() => window.location.href = `/club/${club._id}`}>More Info</p>
+                                </div>
                             )}
                         </div>
                     )
