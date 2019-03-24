@@ -7,7 +7,7 @@ import logo from '../../Images/logo-only.png';
 class Signup extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             firstName: '',
             lastName: '',
@@ -15,7 +15,7 @@ class Signup extends Component {
             number: '',
             username: '',
             password: '',
-            whoIsSigningUp: 'member'
+            type: 'member'
         };
     };
   
@@ -46,14 +46,16 @@ class Signup extends Component {
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
                 <h1 className='h1-primary'>Leader Signup</h1>
                 <form className='user-form signup-form' onSubmit={this.handleSubmit}>
-                    <label htmlFor='username'>Username</label>
+                    <input type='text' name='firstName' id='firstName' placeholder='Firt Name' value={this.state.firstName} onChange={this.handleChange} />
+                    <input type='text' name='lastName' id='lastName' placeholder='Last Name' value={this.state.lastName} onChange={this.handleChange} />
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor='password'>Password</label>                    
+                    <input type='text' name='number' id='number' placeholder='Phone Number' value={this.state.number} onChange={this.handleChange} />
+                    <input type='text' name='email' id='email' placeholder='Make School Email' value={this.state.email} onChange={this.handleChange} />
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Signup</button>
                     <p
                         className='text_sm'
-                        id='whoIsSigningUp'
+                        id='type'
                         onClick={(e) => {
                             e.memberType = 'member'
                             this.handleTypeChange(e)
@@ -77,7 +79,7 @@ class Signup extends Component {
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
                     <button className='blue_btn' type='submit' disabled={!this.validateForm()}>Submit</button>
                 </form>
-                <p className='text_sm' id='whoIsSigningUp' onClick={(e) => { 
+                <p className='text_sm' id='type' onClick={(e) => { 
                     e.memberType = 'leader'
                     this.handleTypeChange(e)
                 }}>Want to start a club?</p>
@@ -91,11 +93,11 @@ class Signup extends Component {
             return <Redirect to='/dashboard' />
         }
         else {
-            if (this.state.whoIsSigningUp === 'member') {
+            if (this.state.type === 'member') {
                 return this.MemberView();
             };
 
-            if (this.state.whoIsSigningUp === 'leader') {
+            if (this.state.type === 'leader') {
                 return this.LeaderView();
             };
         };
