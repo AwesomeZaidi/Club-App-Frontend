@@ -1,6 +1,6 @@
 // src/js/actions/index.js
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB, HANDLE_JOIN, HANDLE_ERROR } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
@@ -12,7 +12,17 @@ export function loginUser(loginState) {
     return (dispatcher) => { // read more into dispatcher
         axios.post(`/login`, loginState).then((res) => {
             dispatcher(handleLogin(res.data.user)); // THUNKED IT!
-        }).catch(console.err);
+        }).catch((err) => {
+            dispatcher(handleError(true));
+        });
+    };
+};  
+
+// ACTION HANDLE Error
+export const handleError = (error) => {
+    return {
+        type: HANDLE_ERROR,
+        payload: error
     };
 };
 
@@ -20,27 +30,43 @@ export function loginUser(loginState) {
 export const handleLogin = (user) => {
     return {
         type: HANDLE_LOGIN,
-        payload: user
+        payload: user,
+        payload_error: false
     };
 };
 
 // SIGNUP USER ACTION 
 export function signupUser(signupState) {
-    console.log("IN SIGNUP USER ACTION");
-    console.log("signupState:", signupState);
     return (dispatcher) => {
         axios.post(`/signup`, signupState).then((res) => {
-            console.log("res.data:", res.data);
             dispatcher(handleSignup(res.data.user));
         }).catch(console.err);
     };
 };
 
-export const handleSignup = (user, token) => {
+export const handleSignup = (user) => {
     return {
         type: SIGNUP_USER,
-        user_payload: user,
-        token_payload: token
+        payload: user,
+        payload_error: false
+    };
+};
+
+
+export function joinClub(clubId) {
+    console.log("clubId:", clubId);
+    return (dispatcher) => {
+        axios.post(`/club`, {clubId}).then((res) => {
+            console.log("res.data:", res.data);
+            dispatcher(handleJoin(clubId));
+        }).catch(console.err);
+    };
+};
+
+export const handleJoin = (clubId) => {
+    return {
+        type: HANDLE_JOIN,
+        payload: clubId
     };
 };
 
@@ -60,14 +86,9 @@ export const handleSettings = (user) => {
     };
 };
 
-export function requestClub(userData, clubData) {
-    console.log("here");
-    console.log("userData:", userData);    
-    console.log("clubData:", clubData);
+export function requestClub(clubData) {
     return (dispatcher) => {
-        console.log("in return");
-        axios.post(`/requestClub`, {userData, clubData}).then(res => {
-            console.log("res:", res.data);
+        axios.post(`/requestClub`, {clubData}).then(res => {
             dispatcher(handleRequestClub(res.data.user));
         }).catch(console.err);
     };
@@ -80,41 +101,41 @@ export const handleRequestClub = (user) => {
     };
 };
 
-export function viewAllClubs(userData) {
+// ADMIN: VIEWS ALL CLUBS REQUESTING TO JOIN
+export function getAllClubsRequestingToJoin() {
     return (dispatcher) => {
-        console.log("userDataa:", userData);
-        axios.post(`/getAllClubs`, userData).then((res) => {
-            console.log("res.data.clubs:", res.data.clubs); 
+        axios.get(`/getAllClubsRequestingToJoin`).then((res) => {
             dispatcher(handleAllClubs(res.data.clubs));
-        }).catch(err => {
-            console.log("err:", err);
-        });
+        }).catch(console.err);
     };
 };
 
-export const handleAllClubs = (clubs) => {
-    console.log("CLUBS:", clubs);
+// for anyone: VIEWS ALL CLUBS
+export function viewAllClubs() {
+    return (dispatcher) => {
+        axios.get(`/getAllClubs`).then((res) => {
+            dispatcher(handleAllClubs(res.data.clubs));
+        }).catch(console.err);
+    };
+};
+
+export const handleAllClubs = (all_clubs) => {
     return {
         type: VIEW_ALL_CLUBS,
-        payload: clubs
+        payload: all_clubs
     };
 };
 
-export function getClubLeaderClub(clubId, userId) {
+// LEADER: GET THE LEADERS CLUB OBJECT
+export function getClubLeaderClub() {
     return (dispatcher) => {
-        console.log("id:", clubId);
-        console.log("userId:", userId);
-        axios.post(`/getClubLeaderClub`, {clubId, userId}).then((res) => {
-            console.log("res.data.clubs:", res.data.club); 
+        axios.get(`/getClubLeaderClub`).then((res) => {
             dispatcher(handleClubLeaderClub(res.data.club));
-        }).catch(err => {
-            console.log("err:", err);
-        });
+        }).catch(console.err);
     };
 };
 
 export const handleClubLeaderClub = (club) => {
-    console.log("CLUB:", club);
     return {
         type: GET_LEADER_CLUB,
         payload: club

@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.requestClub(this.props.user, this.state);
+        this.props.requestClub(this.state);
     };
 
     componentWillMount() {
@@ -27,7 +27,7 @@ class Dashboard extends Component {
             this.props.viewAllClubs(this.props.user);
         };
         if (this.props.user.type === `leader` && this.props.user.accepted) {
-            this.props.getClubLeaderClub(this.props.user.clubs[0], this.props.user._id);
+            this.props.getClubLeaderClub(this.props.user);
         };
     };
     
@@ -35,11 +35,23 @@ class Dashboard extends Component {
         if (this.props.user.clubs.length < 1) {
             return (
                 <div className="card">
-                    <p onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
+                    <p className='text_sm' onClick={() => window.location.href = '/clubs'}>Go join some clubs</p>
                 </div>
             );
         } else {
-            return null;
+            return (
+                <div className="events-cards float-left">
+                    {this.props.user.clubs.map(
+                        (club, index) => {
+                            return (
+                                <div className="card">
+                                    <li key={'mykey' + index}>{club.title}</li>
+                                </div>
+                            )
+                        }
+                    )};
+                </div>
+            );
         };
     };
 
@@ -51,15 +63,36 @@ class Dashboard extends Component {
                     <img className="med-logo-only" src={ avatar } alt="Avatar" />
                 </div>
                 <h1>Welcome, {this.props.user.username}</h1>
-                <h2>Upcoming Events</h2>
-                <div className="events-cards">
+                <div className='push-down-med full-width top-down-left'>
+                    <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>                    
                     {this.cardLink()}
                 </div>
             </div>
         );
     };
 
-    leaderView(user) {
+    leaderView() {
+        const leaderDashboard = (
+            <div className="dashboard">
+                <div className="top">
+                    <img className="small-img-only" src={logo} alt="Make School" />
+                    <img className="med-logo-only" src={ avatar } alt="Avatar" />
+                </div>
+                <h1 >Welcome, {this.props.user.username}</h1>
+                <section className="club-section user-form">
+                    <p className="h1-primary">{this.props.leaderClub.title}</p>
+                    <button onClick={() => window.location.href = '/createevent'} className="black_btn">Create Event</button>
+                    <button className="black_btn">Manage Club</button>
+                </section>
+                <div className='push-down-med full-width top-down-left'>
+                    <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
+                    <div className="events-cards float-left">
+                        {this.cardLink()}
+                    </div>
+                </div>
+            </div>
+        );  
+
         const request = (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
@@ -68,7 +101,7 @@ class Dashboard extends Component {
                     <legend>Start a club</legend>
                     <label htmlFor="title">Title</label>
                     <input value={this.state.title} id="title" name="title" placeholder="Title" onChange={this.handleChange} />
-                    <button className="black_btn">Submit</button>
+                    <button className="blue_btn">Submit</button>
                 </form>
             </div>
         );
@@ -76,14 +109,6 @@ class Dashboard extends Component {
         const waitingVerification = (
             <h1>Your club is awaiting verification</h1>
         );
-
-        const leaderDashboard = (
-            <div>
-                <h1>Club leader dashboard</h1>
-                <p>{JSON.stringify(this.props.leaderClub.title)}</p>
-            </div>
-        );  
-
         if (!this.props.user.requested || this.props.user.requested === false) {
             return request;
         } else if (this.props.user.requested) {
@@ -125,7 +150,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        clubs: state.clubs,
+        all_clubs: state.all_clubs,
         leaderClub: state.leaderClub
     };
 };
