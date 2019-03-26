@@ -29,10 +29,7 @@ class Signup extends Component {
     };
 
     handleChange = (event) => {   
-        this.setState({ [event.target.id]: event.target.value });
-        // const obj = {};
-        // obj[event.target.id] = event.memberType;
-        // this.setState(obj);        
+        this.setState({ [event.target.id]: event.target.value });      
     };
 
     handleSubmit = event => {

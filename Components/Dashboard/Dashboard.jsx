@@ -39,12 +39,15 @@ class Dashboard extends Component {
                 </div>
             );
         } else {
-
             return (
-                <div className="card">
-                    {this.props.all_clubs.map(
+                <div className="events-cards float-left">
+                    {this.props.user.clubs.map(
                         (club, index) => {
-                            return <li key={'mykey' + index}>{club.title}</li>
+                            return (
+                                <div className="card">
+                                    <li key={'mykey' + index}>{club.title}</li>
+                                </div>
+                            )
                         }
                     )};
                 </div>
@@ -60,12 +63,9 @@ class Dashboard extends Component {
                     <img className="med-logo-only" src={ avatar } alt="Avatar" />
                 </div>
                 <h1>Welcome, {this.props.user.username}</h1>
-
                 <div className='push-down-med full-width top-down-left'>
-                <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>
-                    <div className="events-cards float-left">
-                        {this.cardLink()}
-                    </div>
+                    <h2 className='light-title float-left push-left_sm push-up_sm'>Upcoming Events</h2>                    
+                    {this.cardLink()}
                 </div>
             </div>
         );

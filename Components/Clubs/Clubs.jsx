@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { viewAllClubs } from "../../js/actions/index";
+import { viewAllClubs, joinClub } from "../../js/actions/index";
 
 import logo from '../../Images/logo-only.png';
 // import '../../Styles/dashboard.scss';
@@ -10,11 +10,18 @@ class Clubs extends Component {
         super(props);
 
         this.state = {
+            buttonText: 'JOIN',
             clubClicked: null
         }
     }
     componentWillMount() {
         return this.props.viewAllClubs();        
+    };
+
+    async handleClick(club) {
+        await this.props.joinClub(club._id);
+        await this.props.viewAllClubs();
+        return this.setState({ buttonText: 'JOINED' });
     };
 
     loadClubCard(clubId) {
@@ -35,16 +42,15 @@ class Clubs extends Component {
                         <div>
                             <span onClick={this.state.clubClicked != null ? () => this.loadClubCard(null) : () => this.loadClubCard(club._id)} className='push-down list-item' key={`mykey${index}`} id={`mykey${index}`}>{club.title}</span>
                             {this.state.clubClicked == club._id && (
-                                <div class='club-card'>
-                                    <p>{!club.attendees ? 0 : club.attendees.length} Members</p>
-                                    <button >Join</button>
+                                <div className='club-card'>
+                                    <p>{!club.attendees ? 0 : club.members.length} Members</p>
+                                    <button onClick={() => this.handleClick(club)}>{this.state.buttonText}</button>
                                     <p onClick={() => window.location.href = `/club/${club._id}`}>More Info</p>
                                 </div>
                             )}
                         </div>
                     )
                 )}
-
             </ul>
             </section>
         );
@@ -54,12 +60,14 @@ const mapStateToProps = state => {
     return {
         all_clubs: state.all_clubs,
         user: state.user,
+        users_clubs: state.users_clubs
     };
 };
 
 function mapDispatchToProps() {
     return {
-        viewAllClubs
+        viewAllClubs,
+        joinClub
     };
 };
 

@@ -1,6 +1,6 @@
 // src/js/actions/index.js
 
-import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB, HANDLE_ERROR } from "../constants/action-types";
+import { HANDLE_LOGIN, SIGNUP_USER, LOGOUT_USER, HANDLE_SETTINGS, REQUEST_CLUB, VIEW_ALL_CLUBS, GET_LEADER_CLUB, HANDLE_JOIN, HANDLE_ERROR } from "../constants/action-types";
 import axios from "axios";
 
 export const logoutUser = () => {
@@ -49,6 +49,24 @@ export const handleSignup = (user) => {
         type: SIGNUP_USER,
         payload: user,
         payload_error: false
+    };
+};
+
+
+export function joinClub(clubId) {
+    console.log("clubId:", clubId);
+    return (dispatcher) => {
+        axios.post(`/club`, {clubId}).then((res) => {
+            console.log("res.data:", res.data);
+            dispatcher(handleJoin(clubId));
+        }).catch(console.err);
+    };
+};
+
+export const handleJoin = (clubId) => {
+    return {
+        type: HANDLE_JOIN,
+        payload: clubId
     };
 };
 

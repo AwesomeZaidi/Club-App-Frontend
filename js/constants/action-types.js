@@ -10,4 +10,5 @@ export const HANDLE_SETTINGS = "HANDLE_SETTINGS";
 export const REQUEST_CLUB = "REQUEST_CLUB";
 export const VIEW_ALL_CLUBS = "VIEW_ALL_CLUBS";
 export const GET_LEADER_CLUB = "GET_LEADER_CLUB";
+export const HANDLE_JOIN = "HANDLE_JOIN";
 export const HANDLE_ERROR = "HANDLE_ERROR";
