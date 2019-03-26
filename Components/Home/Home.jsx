@@ -9,11 +9,11 @@ class Home extends Component {
             return <Redirect to='/dashboard' />
         } else {
             return (          
-                <div className="home-page">
-                    <img src={logo} alt="Make School"></img>
-                    <h1 className="h1-primary">Clubs App</h1>
-                    <button className="black_btn" onClick={() => window.location.href = '/login'}>Login</button>
-                    <button className="black_btn" onClick={() => window.location.href = '/signup'}>Signup</button>
+                <div className="top-down-center push-down-med">
+                    <img className='med-logo-only' src={logo} alt="Make School"></img>
+                    <h1 className="h1-primary push-down-small">Clubs App</h1>
+                    <button className="blue_btn push-down-med" onClick={() => window.location.href = '/login'}>Login</button>
+                    <button className="blue_btn push-down" onClick={() => window.location.href = '/signup'}>Signup</button>
                 </div>
             );
         };

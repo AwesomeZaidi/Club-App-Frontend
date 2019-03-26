@@ -1,0 +1,35 @@
+
+@import "variables.scss";
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 3em;
+    // LEADER VIEW
+    .club-section {
+       width: 100vw;
+        height: 30vh;
+        background-color: $primary-blue;
+        color: $light-white;
+        button {
+            margin-bottom: 1em;
+        }
+    }
+    .top {
+        display: flex;
+        align-items: center;
+    }
+    .top > * {
+        margin: 0em .6em;
+    }
+    .card {
+        color: $light-white;
+        background-color: $primary-blue;
+        width: 12em;
+        height: 10em;
+        border: 1px solid;
+    }
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import logo from '../../Images/logo.svg';
 import '../../Styles/navbar.scss';
 import { logoutUser } from '../../js/actions/';
@@ -17,22 +16,16 @@ class Navbar extends Component {
   }
 
   render() {
-    // function LogoutButton(props) {
-    //   if (this.props.token) {
-    //     return <Button onClick={this.props.logoutUser} text="Logout"/>;
-    //   }
-    // }
     return (
       <div className="header btn-shadow">
-        <img href="#default" className="header-logo" src={logo} alt="Logo" srcSet="" />
+        <img onClick={() => window.location.href = '/'}href="#default" className="header-logo" src={logo} alt="Logo" srcSet="" />
         <div className="header-right">
-          {/* <Link to='/' className="active" >APPLY</Link> */}
-          {/* <a href="/contact">Contact</a> */}
-          {/* <Link to='/about'>APPLY</Link> */}
-          {/* <Link>LOGOUT</Link> */}
-          {/* {this.LogoutButton(this.props)} */}
-          {this.showLogout()}
-  
+        {this.showLogout()}
+        {/* <Link to='/' className="active" >APPLY</Link> */}
+        {/* <a href="/contact">Contact</a> */}
+        {/* <Link to='/about'>APPLY</Link> */}
+        {/* <Link>LOGOUT</Link> */}
+        {/* {this.LogoutButton(this.props)} */}
         </div>
       </div>
     )

@@ -27,9 +27,18 @@ class Login extends Component {
         this.props.loginUser(this.state);
     };
 
-    render() {  
-        console.log("this.props.user:", this.props.user);
-        
+    handleError = e => {
+        if (this.props.error) {
+            return (
+                <div className='error-box'>
+                    <p>Wrong username or password</p>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    render() {          
         if (this.props.user) {
             return <Redirect to='/dashboard' />
         };
@@ -37,19 +46,25 @@ class Login extends Component {
         return (
             <div className="user-form">
                 <img className="med-logo-only" src={logo} alt="Make School"></img>
-                <h1>Login</h1>
+                <h1 className='h1-primary'>Login</h1>
+                {this.handleError()}
                 <form onSubmit={this.handleSubmit}>
                     <input type='text' name='username' id='username' placeholder='Username' value={this.state.username} onChange={this.handleChange} />                  
                     <input type='password' name='password'  id='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} />
-                    <button className="black_btn" type='submit' disabled={!this.validateForm()} >Submit</button> 
+                    <button className="blue_btn" type='submit' disabled={!this.validateForm()} >Submit</button> 
                 </form>
+                <p className='text_sm' onClick={() => window.location.href = '/signup'}>Don’t have an account?</p>
+                <p className='text_sm'>Forgot Password?</p>
             </div>
         );
     };
 };
 
 const mapStateToProps = state => {
-    return { user: state.user };
+    return {
+        user: state.user,
+        error: state.error
+    };
 };
 
 function mapDispatchToProps() {
