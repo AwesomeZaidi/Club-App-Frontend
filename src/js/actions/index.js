@@ -10,7 +10,7 @@ export const logoutUser = () => {
 // LOGIN ACTION 
 export function loginUser(loginState) {
     return (dispatcher) => { // read more into dispatcher
-        axios.post(`/login`, loginState).then((res) => {
+        axios.post(`https://clubs-app-backend.herokuapp.com/login`, loginState).then((res) => {
             dispatcher(handleLogin(res.data.user)); // THUNKED IT!
         }).catch((err) => {
             dispatcher(handleError(true));
@@ -38,7 +38,7 @@ export const handleLogin = (user) => {
 // SIGNUP USER ACTION 
 export function signupUser(signupState) {
     return (dispatcher) => {
-        axios.post(`/signup`, signupState).then((res) => {
+        axios.post(`https://clubs-app-backend.herokuapp.com/signup`, signupState).then((res) => {
             dispatcher(handleSignup(res.data.user));
         }).catch(console.err);
     };
@@ -56,7 +56,7 @@ export const handleSignup = (user) => {
 export function joinClub(clubId) {
     console.log("clubId:", clubId);
     return (dispatcher) => {
-        axios.post(`/club`, {clubId}).then((res) => {
+        axios.post(`https://clubs-app-backend.herokuapp.com/club`, {clubId}).then((res) => {
             console.log("res.data:", res.data);
             dispatcher(handleJoin(clubId));
         }).catch(console.err);
@@ -73,7 +73,7 @@ export const handleJoin = (clubId) => {
 // UPDATE SETTINGS ACTION 
 export function updateSettings(userFormState, token) {
     return (dispatcher) => {
-        axios.put(`/settings`, {userFormState, token}).then((res) => {
+        axios.put(`https://clubs-app-backend.herokuapp.com/settings`, {userFormState, token}).then((res) => {
             dispatcher(handleSettings(res.data.user));
         }).catch(console.err);
     };
@@ -88,7 +88,7 @@ export const handleSettings = (user) => {
 
 export function requestClub(clubData) {
     return (dispatcher) => {
-        axios.post(`/requestClub`, {clubData}).then(res => {
+        axios.post(`https://clubs-app-backend.herokuapp.com/requestClub`, {clubData}).then(res => {
             dispatcher(handleRequestClub(res.data.user));
         }).catch(console.err);
     };
@@ -104,7 +104,7 @@ export const handleRequestClub = (user) => {
 // ADMIN: VIEWS ALL CLUBS REQUESTING TO JOIN
 export function getAllClubsRequestingToJoin() {
     return (dispatcher) => {
-        axios.get(`/getAllClubsRequestingToJoin`).then((res) => {
+        axios.get(`https://clubs-app-backend.herokuapp.com/getAllClubsRequestingToJoin`).then((res) => {
             dispatcher(handleAllClubs(res.data.clubs));
         }).catch(console.err);
     };
@@ -113,7 +113,7 @@ export function getAllClubsRequestingToJoin() {
 // for anyone: VIEWS ALL CLUBS
 export function viewAllClubs() {
     return (dispatcher) => {
-        axios.get(`/getAllClubs`).then((res) => {
+        axios.get(`https://clubs-app-backend.herokuapp.com/getAllClubs`).then((res) => {
             dispatcher(handleAllClubs(res.data.clubs));
         }).catch(console.err);
     };
@@ -129,7 +129,7 @@ export const handleAllClubs = (all_clubs) => {
 // LEADER: GET THE LEADERS CLUB OBJECT
 export function getClubLeaderClub() {
     return (dispatcher) => {
-        axios.get(`/getClubLeaderClub`).then((res) => {
+        axios.get(`https://clubs-app-backend.herokuapp.com/getClubLeaderClub`).then((res) => {
             dispatcher(handleClubLeaderClub(res.data.club));
         }).catch(console.err);
     };

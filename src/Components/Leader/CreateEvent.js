@@ -32,7 +32,7 @@ class CreateEvent extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const eventData = this.state;
-        await axios.post(`/event`, eventData).then((res) => {   
+        await axios.post(`https://clubs-app-backend.herokuapp.com/event`, eventData).then((res) => {   
             this.setState({
                 eventCreated: res.data.event._id
             });

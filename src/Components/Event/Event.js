@@ -20,17 +20,13 @@ class Event extends Component {
     componentDidMount() {
         // const cutOffUrl = window.location.pathname + 
         const eventId = window.location.pathname.substr(7);
-        axios.get('/event', {
+        axios.get('https://clubs-app-backend.herokuapp.com/event', {
             params: {
                 eventId: eventId
               }
         }).then((res) => {
-            console.log("res.data:", res.data);
             const event = res.data.event;
-            const clubTitle = res.data.clubTitle;
-            console.log("clubTitle:", clubTitle);
-            console.log("event:", event);
-                    
+            const clubTitle = res.data.clubTitle;                    
             this.setState({
                 title: event.title,
                 description: event.description,
@@ -42,6 +38,7 @@ class Event extends Component {
             });
         });
     }
+    
     render() {
         return (
             <div className="event-page">
